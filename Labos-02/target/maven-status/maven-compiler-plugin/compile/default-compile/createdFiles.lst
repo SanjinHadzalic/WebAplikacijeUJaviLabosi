@@ -1,0 +1,8 @@
+hr\tvz\hadzalic\rentacarapp\controller\VoziloController.class
+hr\tvz\hadzalic\rentacarapp\entity\VoziloCommand.class
+hr\tvz\hadzalic\rentacarapp\repository\VoziloRepository.class
+hr\tvz\hadzalic\rentacarapp\entity\Vozilo.class
+hr\tvz\hadzalic\rentacarapp\Labos01Application.class
+hr\tvz\hadzalic\rentacarapp\service\VoziloService.class
+hr\tvz\hadzalic\rentacarapp\dto\VoziloDTO.class
+hr\tvz\hadzalic\rentacarapp\service\VoziloServiceImpl.class

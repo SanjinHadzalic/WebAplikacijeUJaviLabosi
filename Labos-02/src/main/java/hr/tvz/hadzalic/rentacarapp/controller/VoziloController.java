@@ -1,13 +1,14 @@
 package hr.tvz.hadzalic.rentacarapp.controller;
 
 import hr.tvz.hadzalic.rentacarapp.dto.VoziloDTO;
+import hr.tvz.hadzalic.rentacarapp.entity.VoziloCommand;
 import hr.tvz.hadzalic.rentacarapp.service.VoziloService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +30,18 @@ public class VoziloController {
     public VoziloDTO getVoziloByCode(@PathVariable String code) {
         log.info("Called method getVoziloByCode()");
         return voziloService.findVoziloByCode(code);
+    }
+
+    @PostMapping
+    public ResponseEntity<VoziloDTO> save(@Valid @RequestBody final VoziloCommand command) {
+        return voziloService.save(command)
+                .map(
+                        voziloDTO -> ResponseEntity
+                                .status(HttpStatus.CREATED)
+                                .body(voziloDTO)
+                )
+                .orElseGet(
+                        () -> ResponseEntity.status(HttpStatus.CONFLICT).build()
+                );
     }
 }

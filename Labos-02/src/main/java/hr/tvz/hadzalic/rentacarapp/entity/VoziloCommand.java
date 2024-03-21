@@ -1,9 +1,11 @@
 package hr.tvz.hadzalic.rentacarapp.entity;
 
 import jakarta.validation.constraints.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 
+@Data
 public class VoziloCommand {
     @NotNull(message = "Vehicle Code must not be null")
     private String vehicleCode;
@@ -27,10 +29,10 @@ public class VoziloCommand {
     @NotNull(message = "Fuel type must not be null")
     private String fuelType;
 
-    @NotBlank(message = "Last service date must not be blank")
+    @NotNull(message = "Last service date must not be null")
     private LocalDate lastServiceDate;
 
-    @NotBlank(message = "Next service date must not be blank")
+    @NotNull(message = "Next service date must not be null")
     private LocalDate nextSeviceDate;
 
     @NotNull(message = "Mileage must not be null")
@@ -38,7 +40,7 @@ public class VoziloCommand {
     private Double mileage;
 
     @NotEmpty(message = "Registration must not be empty")
-    @Pattern(regexp = "-", message = "Registration must contain a hyphen")
+    @Pattern(regexp = "^[A-Z0-9]+ [-] [A-Z0-9]+$", message = "Registration must be in format XXXXX - YYY (uppercase letters and numbers)")
     private String registration;
 
     @NotNull(message = "Vehicle Identification Number must not be null")
