@@ -17,4 +17,6 @@ public class Vozilo {
     private LocalDate lastServiceDate;
     private LocalDate nextSeviceDate;
     private Double mileage;
+    private String registracija;
+    private String brojSasije;
 }
