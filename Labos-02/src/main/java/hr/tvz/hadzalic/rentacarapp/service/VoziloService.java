@@ -10,5 +10,7 @@ public interface VoziloService {
     List<VoziloDTO> findAll();
     VoziloDTO findVoziloByCode(String code);
     Optional<VoziloDTO> save(VoziloCommand command);
+    Optional<VoziloDTO> findVoziloByRegistration(String registration);
+    Optional<VoziloDTO> findVoziloByVin(String vin);
     void delete(Long vehicleCode);
 }

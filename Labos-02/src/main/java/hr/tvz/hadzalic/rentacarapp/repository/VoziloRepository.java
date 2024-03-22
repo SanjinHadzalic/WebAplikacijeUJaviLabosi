@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface VoziloRepository {
     List<Vozilo> findAll();
     Optional<Vozilo> findVoziloByCode(String code);
+    Optional<Vozilo> findVoziloByRegistration(String registration);
+    Optional<Vozilo> findVoziloByVin(String vin);
     Optional<Vozilo> save(Vozilo vozilo);
     boolean existsByRegistration(String registration);
     boolean existsByVin(String vin);

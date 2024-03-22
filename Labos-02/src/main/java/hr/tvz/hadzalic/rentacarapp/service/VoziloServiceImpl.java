@@ -30,6 +30,22 @@ public class VoziloServiceImpl implements VoziloService {
     }
 
     @Override
+    public Optional<VoziloDTO> findVoziloByRegistration(String registration) {
+        return voziloRepository.findAll().stream()
+                .filter(q -> q.getRegistracija().equals(registration))
+                .findFirst()
+                .map(this::convertVoziloToVoziloDTO);
+    }
+
+    @Override
+    public Optional<VoziloDTO> findVoziloByVin(String vin) {
+        return voziloRepository.findAll().stream()
+                .filter(q -> q.getBrojSasije().equals(vin))
+                .findFirst()
+                .map(this::convertVoziloToVoziloDTO);
+    }
+
+    @Override
     public Optional<VoziloDTO> save(VoziloCommand command) {
         if(hasDuplicateRegistrationOrVin(command)) {
             return Optional.empty();

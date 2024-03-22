@@ -32,6 +32,20 @@ public class VoziloRepositoryImpl implements VoziloRepository{
     }
 
     @Override
+    public Optional<Vozilo> findVoziloByRegistration(String registration) {
+        return findAll().stream()
+                .filter(v -> v.getRegistracija().equals(registration))
+                .findFirst();
+    }
+
+    @Override
+    public Optional<Vozilo> findVoziloByVin(String vin) {
+        return findAll().stream()
+                .filter(v -> v.getBrojSasije().equals(vin))
+                .findFirst();
+    }
+
+    @Override
     public Optional<Vozilo> save(Vozilo vozilo) {
         findAll().add(vozilo);
         return Optional.of(vozilo);

@@ -26,10 +26,22 @@ public class VoziloController {
         return voziloService.findAll();
     }
 
-    @GetMapping("/{code}")
+    @GetMapping("/code/{code}")
     public VoziloDTO getVoziloByCode(@PathVariable String code) {
         log.info("Called method getVoziloByCode()");
         return voziloService.findVoziloByCode(code);
+    }
+
+    @GetMapping("/registration/{registration}")
+    public VoziloDTO getVoziloByRegistration(@PathVariable String registration) {
+        log.info("Called method getVoziloByRegistration()");
+        return voziloService.findVoziloByRegistration(registration).get();
+    }
+
+    @GetMapping("/vin/{vin}")
+    public VoziloDTO getVoziloByVin(@PathVariable String vin) {
+        log.info("Called method getVoziloByVin()");
+        return voziloService.findVoziloByVin(vin).get();
     }
 
     @PostMapping
