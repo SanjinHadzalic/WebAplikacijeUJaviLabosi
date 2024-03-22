@@ -44,4 +44,10 @@ public class VoziloController {
                         () -> ResponseEntity.status(HttpStatus.CONFLICT).build()
                 );
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{code}")
+    public void delete(@PathVariable Long code) {
+        voziloService.delete(code);
+    }
 }

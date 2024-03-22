@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class Vozilo {
-    private String vehicleCode;
+    private Long vehicleCode;
     private Integer maxNumberOfPassenger;
     private String gearbox;
     private String airConditioning;

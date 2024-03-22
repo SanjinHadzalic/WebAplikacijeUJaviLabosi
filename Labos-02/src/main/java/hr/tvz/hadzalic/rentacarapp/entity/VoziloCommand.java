@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 public class VoziloCommand {
     @NotNull(message = "Vehicle Code must not be null")
-    private String vehicleCode;
+    private Long vehicleCode;
 
     @NotNull(message = "Max Number of Passenger must not be null")
     @PositiveOrZero(message = "Max Number of Passenger must be a positive number")

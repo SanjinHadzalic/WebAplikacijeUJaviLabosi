@@ -37,6 +37,11 @@ public class VoziloServiceImpl implements VoziloService {
         return voziloRepository.save(mapCommandToVozilo(command)).map(this::mapVoziloToDTO);
     }
 
+    @Override
+    public void delete(Long vehicleCode) {
+        voziloRepository.delete(vehicleCode);
+    }
+
     private boolean hasDuplicateRegistrationOrVin(VoziloCommand command) {
         return voziloRepository.existsByRegistration(command.getRegistration()) ||
                 voziloRepository.existsByVin(command.getVehicleIdentificationNumber());

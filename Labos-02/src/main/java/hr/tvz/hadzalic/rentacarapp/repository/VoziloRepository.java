@@ -11,4 +11,5 @@ public interface VoziloRepository {
     Optional<Vozilo> save(Vozilo vozilo);
     boolean existsByRegistration(String registration);
     boolean existsByVin(String vin);
+    void delete(Long vehicleCode);
 }
