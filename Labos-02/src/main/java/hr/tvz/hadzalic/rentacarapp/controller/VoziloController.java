@@ -57,6 +57,15 @@ public class VoziloController {
                 );
     }
 
+    @PutMapping("/{code}")
+    public ResponseEntity<VoziloDTO> update(@PathVariable Long code, @Valid @RequestBody final VoziloCommand command) {
+        return voziloService.update(code, command)
+                .map(ResponseEntity::ok)
+                .orElseGet(
+                        () -> ResponseEntity.notFound().build()
+                );
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{code}")
     public void delete(@PathVariable Long code) {

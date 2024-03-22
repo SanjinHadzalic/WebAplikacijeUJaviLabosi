@@ -12,5 +12,6 @@ public interface VoziloService {
     Optional<VoziloDTO> save(VoziloCommand command);
     Optional<VoziloDTO> findVoziloByRegistration(String registration);
     Optional<VoziloDTO> findVoziloByVin(String vin);
+    Optional<VoziloDTO> update(Long code, VoziloCommand command);
     void delete(Long vehicleCode);
 }

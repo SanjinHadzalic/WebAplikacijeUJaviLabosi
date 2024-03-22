@@ -46,6 +46,12 @@ public class VoziloServiceImpl implements VoziloService {
     }
 
     @Override
+    public Optional<VoziloDTO> update(Long code, VoziloCommand command) {
+        return voziloRepository.update(code, mapCommandToVozilo(command))
+                .map(this::convertVoziloToVoziloDTO);
+    }
+
+    @Override
     public Optional<VoziloDTO> save(VoziloCommand command) {
         if(hasDuplicateRegistrationOrVin(command)) {
             return Optional.empty();

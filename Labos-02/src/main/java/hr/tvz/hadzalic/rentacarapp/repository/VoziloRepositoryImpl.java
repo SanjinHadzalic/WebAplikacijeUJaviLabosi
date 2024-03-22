@@ -46,6 +46,20 @@ public class VoziloRepositoryImpl implements VoziloRepository{
     }
 
     @Override
+    public Optional<Vozilo> update(Long code, Vozilo vozilo) {
+        boolean exists = voziloList.removeIf(
+                v -> Objects.equals(v.getVehicleCode(), code) &&
+                        Objects.equals(v.getVehicleCode(), vozilo.getVehicleCode())
+        );
+
+        if(exists){
+            voziloList.add(vozilo);
+            return Optional.of(vozilo);
+        } else {
+            return Optional.empty();
+        }    }
+
+    @Override
     public Optional<Vozilo> save(Vozilo vozilo) {
         findAll().add(vozilo);
         return Optional.of(vozilo);
