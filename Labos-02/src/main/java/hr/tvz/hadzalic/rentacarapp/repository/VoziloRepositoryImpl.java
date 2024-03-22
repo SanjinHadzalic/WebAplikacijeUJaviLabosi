@@ -35,4 +35,20 @@ public class VoziloRepositoryImpl implements VoziloRepository{
         findAll().add(vozilo);
         return Optional.of(vozilo);
     }
+
+    @Override
+    public boolean existsByRegistration(String registration) {
+        return findAll().stream()
+                .filter(q -> q.getRegistracija().equals(registration))
+                .findFirst()
+                .isPresent();
+    }
+
+    @Override
+    public boolean existsByVin(String vin) {
+        return findAll().stream()
+                .filter(q -> q.getBrojSasije().equals(vin))
+                .findFirst()
+                .isPresent();
+    }
 }

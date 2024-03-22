@@ -9,4 +9,6 @@ public interface VoziloRepository {
     List<Vozilo> findAll();
     Optional<Vozilo> findVoziloByCode(String code);
     Optional<Vozilo> save(Vozilo vozilo);
+    boolean existsByRegistration(String registration);
+    boolean existsByVin(String vin);
 }

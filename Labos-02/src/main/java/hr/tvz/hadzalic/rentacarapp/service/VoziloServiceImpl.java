@@ -31,7 +31,15 @@ public class VoziloServiceImpl implements VoziloService {
 
     @Override
     public Optional<VoziloDTO> save(VoziloCommand command) {
+        if(hasDuplicateRegistrationOrVin(command)) {
+            return Optional.empty();
+        }
         return voziloRepository.save(mapCommandToVozilo(command)).map(this::mapVoziloToDTO);
+    }
+
+    private boolean hasDuplicateRegistrationOrVin(VoziloCommand command) {
+        return voziloRepository.existsByRegistration(command.getRegistration()) ||
+                voziloRepository.existsByVin(command.getVehicleIdentificationNumber());
     }
 
     private VoziloDTO convertVoziloToVoziloDTO(Vozilo vozilo) {
