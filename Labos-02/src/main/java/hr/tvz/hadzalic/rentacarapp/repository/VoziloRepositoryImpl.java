@@ -1,6 +1,7 @@
 package hr.tvz.hadzalic.rentacarapp.repository;
 
 import hr.tvz.hadzalic.rentacarapp.entity.Vozilo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class VoziloRepositoryImpl implements VoziloRepository{
     @Override
     public Optional<Vozilo> findVoziloByCode(String code) {
         return findAll().stream()
-                .filter(x -> x.getVehicleCode().equals(code))
+                .filter(x -> x.getVehicleCode().toString().equals(code))
                 .findFirst();
     }
 
@@ -61,6 +62,7 @@ public class VoziloRepositoryImpl implements VoziloRepository{
 
     @Override
     public Optional<Vozilo> save(Vozilo vozilo) {
+        vozilo.setVehicleCode(generateId(voziloList));
         findAll().add(vozilo);
         return Optional.of(vozilo);
     }
@@ -84,5 +86,11 @@ public class VoziloRepositoryImpl implements VoziloRepository{
     @Override
     public void delete(Long vehicleCode) {
         voziloList.removeIf(vozilo -> Objects.equals(vozilo.getVehicleCode(), vehicleCode));
+    }
+
+    public Long generateId(List<Vozilo> voziloList) {
+        return voziloList.stream()
+                .map(Vozilo::getVehicleCode)
+                .max(Long::compare).get() + 1;
     }
 }

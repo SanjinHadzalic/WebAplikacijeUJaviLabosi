@@ -25,7 +25,7 @@ public class VoziloServiceImpl implements VoziloService {
 
     @Override
     public VoziloDTO findVoziloByCode(String code) {
-        return voziloRepository.findAll().stream().filter(q->q.getVehicleCode().equals(code))
+        return voziloRepository.findAll().stream().filter(q->q.getVehicleCode().toString().equals(code))
                 .findFirst().map(this::convertVoziloToVoziloDTO).get();
     }
 
