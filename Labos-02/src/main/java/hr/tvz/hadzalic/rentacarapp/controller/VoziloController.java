@@ -20,7 +20,7 @@ public class VoziloController {
 
     private VoziloService voziloService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<VoziloDTO> getAll() {
         log.info("Called method findAll()");
         return voziloService.findAll();
@@ -46,6 +46,7 @@ public class VoziloController {
 
     @PostMapping
     public ResponseEntity<VoziloDTO> save(@Valid @RequestBody final VoziloCommand command) {
+        log.info("Called method save()");
         return voziloService.save(command)
                 .map(
                         voziloDTO -> ResponseEntity
@@ -59,6 +60,7 @@ public class VoziloController {
 
     @PutMapping("/{code}")
     public ResponseEntity<VoziloDTO> update(@PathVariable Long code, @Valid @RequestBody final VoziloCommand command) {
+        log.info("Called method update()");
         return voziloService.update(code, command)
                 .map(ResponseEntity::ok)
                 .orElseGet(
@@ -69,6 +71,7 @@ public class VoziloController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{code}")
     public void delete(@PathVariable Long code) {
+        log.info("Called method delete()");
         voziloService.delete(code);
     }
 }
