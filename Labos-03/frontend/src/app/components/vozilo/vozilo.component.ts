@@ -14,19 +14,23 @@ import { Router } from '@angular/router';
 })
 export class VoziloComponent implements OnInit{
   vozila: Vozilo[] = [];
+  selectedVozilo: Vozilo | null = null;
 
   constructor(private voziloService: VoziloService, private router: Router) {}
 
   ngOnInit() : void {
     this.getVozila();
-    this.router.navigate(['/vozila'])
+    this.router.navigate([''])
   }
 
   private getVozila() {
     this.voziloService.getVozilo().subscribe(vozilo => {
       this.vozila = vozilo;
     })
+  }
 
+  onVoziloSelected(vozilo: Vozilo) {
+    this.selectedVozilo = vozilo;
   }
 
 }

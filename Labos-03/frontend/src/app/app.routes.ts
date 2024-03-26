@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
     {
-        path: 'vozila',
+        path: '',
         component: VoziloComponent
     }
 ];

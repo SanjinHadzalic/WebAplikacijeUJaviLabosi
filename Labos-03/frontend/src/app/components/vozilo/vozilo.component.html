@@ -1,8 +1,15 @@
 <h1>Popis vozila</h1>
-<ul>
-  <tr *ngFor="let vozilo of vozila">
-    <td> {{ vozilo.airConditioning }}</td>
-    <td> {{ vozilo.fuelType }}</td>
-    <td> {{ vozilo.maxNumberOfPassenger }}</td>
+<ul class="list-group">
+  <tr *ngFor="let vozilo of vozila" class="list-group-item list-group-item-action" (click)="onVoziloSelected(vozilo)">
+    <td class="list-group-item text-light bg-primary"> {{ vozilo.registration }}</td>
+    <td class="list-group-item"> {{ vozilo.vin }}</td>
   </tr>
 </ul>
+
+<div *ngIf="selectedVozilo" class="card">
+  <h2 class="card-header">Detalji o "{{ selectedVozilo.registration }}"</h2>
+  <ul>
+    <li>Max broj putnika: {{ selectedVozilo.maxNumberOfPassenger }}</li>
+    <li>Mjenjač: {{ selectedVozilo.shifter }}</li>
+  </ul>
+</div>
