@@ -1,0 +1,13 @@
+<h1>Popis vozila</h1>
+<ul class="list-group">
+  <tr *ngFor="let vozilo of vozila" class="list-group-item list-group-item-action" (click)="onVoziloSelected(vozilo)">
+    <td class="list-group-item text-light bg-primary"> {{ vozilo.registration }}</td>
+    <td class="list-group-item"> {{ vozilo.vin }}</td>
+    <td>
+      <button (click) = "onVoziloClick(vozilo.id)" >Details</button>
+  </td>
+
+  </tr>
+</ul>
+
+<button (click)="returnToHome()">Natrag</button>
