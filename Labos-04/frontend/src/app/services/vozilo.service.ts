@@ -24,7 +24,10 @@ export class VoziloService {
         airConditioning: "the best",
         numberOfDoors: 5,
         fuelType: "electric",
-        newCar: true
+        lastServiceDate: new Date(2020,2,2),
+        nextServiceDate: new Date(2025,2,2),
+        mileage:12123
+        // newCar: true
       },
       {
         id: 2,
@@ -35,7 +38,10 @@ export class VoziloService {
         airConditioning: "basic A/C",
         numberOfDoors: 3,
         fuelType: "gasoline",
-        newCar: false
+        lastServiceDate: new Date(2020,2,2),
+        nextServiceDate: new Date(2025,2,2),
+        mileage:12123
+        // newCar: false
       },
       {
         id: 3,
@@ -46,7 +52,10 @@ export class VoziloService {
         airConditioning: "none",
         numberOfDoors: 3,
         fuelType: "diezel",
-        newCar: false
+        lastServiceDate: new Date(2020,2,2),
+        nextServiceDate: new Date(2025,2,2),
+        mileage:12123
+        // newCar: false
       }
     ]
 
@@ -59,6 +68,11 @@ export class VoziloService {
 
   getVoziloById(id: number) {
     return this.httpClient.get<Vozilo>(`${this.basUrl}/${id}`)
+  }
+
+  createVozilo(vozilo: Vozilo): Observable<Object>{
+    return this.httpClient.post(`${this.basUrl}`, vozilo);
+    
   }
 
   deleteVozilo(id: number): Observable<Object>{

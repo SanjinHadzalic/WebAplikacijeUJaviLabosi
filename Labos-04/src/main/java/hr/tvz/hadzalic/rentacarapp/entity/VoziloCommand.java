@@ -7,16 +7,16 @@ import java.time.LocalDate;
 
 @Data
 public class VoziloCommand {
-    @NotNull(message = "Vehicle Code must not be null")
-    private Long vehicleCode;
+    @NotNull(message = "Id must not be null")
+    private Long id;
 
     @NotNull(message = "Max Number of Passenger must not be null")
     @PositiveOrZero(message = "Max Number of Passenger must be a positive number")
     @Max(value = 6, message = "Max Number of Passenger must not be over 6 Persons")
     private Integer maxNumberOfPassenger;
 
-    @NotEmpty(message = "Gearbox must not be empty")
-    private String gearbox;
+    @NotEmpty(message = "Shifter must not be empty")
+    private String shifter;
 
     @NotEmpty(message = "A/C must not be empty")
     private String airConditioning;
@@ -33,7 +33,7 @@ public class VoziloCommand {
     private LocalDate lastServiceDate;
 
     @NotNull(message = "Next service date must not be null")
-    private LocalDate nextSeviceDate;
+    private LocalDate nextServiceDate;
 
     @NotNull(message = "Mileage must not be null")
     @PositiveOrZero(message = "Mileage must be a positive number")
@@ -45,6 +45,6 @@ public class VoziloCommand {
 
     @NotNull(message = "Vehicle Identification Number must not be null")
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Vehicle Identification Number must contain only numbers (0-9) or characters (a-z or A-Z)")
-    private String vehicleIdentificationNumber;
+    private String vin;
 
 }

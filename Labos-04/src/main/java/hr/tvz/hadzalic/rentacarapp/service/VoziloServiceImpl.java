@@ -78,7 +78,7 @@ public class VoziloServiceImpl implements VoziloService {
 
     private boolean hasDuplicateRegistrationOrVin(VoziloCommand command) {
         return voziloRepository.existsByRegistration(command.getRegistration()) ||
-                voziloRepository.existsByVin(command.getVehicleIdentificationNumber());
+                voziloRepository.existsByVin(command.getVin());
     }
 
     private VoziloDTO convertVoziloToVoziloDTO(Vozilo vozilo) {
@@ -89,16 +89,16 @@ public class VoziloServiceImpl implements VoziloService {
 
     private Vozilo mapCommandToVozilo(final VoziloCommand command) {
         return new Vozilo(
-                command.getVehicleCode(),
+                command.getId(),
                 command.getRegistration(),
-                command.getVehicleIdentificationNumber(),
+                command.getVin(),
                 command.getMaxNumberOfPassenger(),
-                command.getGearbox(),
+                command.getShifter(),
                 command.getAirConditioning(),
                 command.getNumberOfDoors(),
                 command.getFuelType(),
                 command.getLastServiceDate(),
-                command.getNextSeviceDate(),
+                command.getNextServiceDate(),
                 command.getMileage()
         );
     }

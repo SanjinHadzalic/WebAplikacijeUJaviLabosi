@@ -7,5 +7,7 @@ export interface Vozilo {
     airConditioning: string;
     numberOfDoors: number;
     fuelType: string;
-    newCar: boolean;
+    lastServiceDate: Date;
+    nextServiceDate: Date;
+    mileage: number;
 }

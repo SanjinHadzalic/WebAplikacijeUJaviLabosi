@@ -14,9 +14,9 @@ public class VoziloRepositoryImpl implements VoziloRepository{
     private static List<Vozilo> voziloList = new ArrayList<>();
 
     static {
-        voziloList.add(new Vozilo(1L,  "ZG9891-GV","2DJRN5DG9ARP44306", 5, "standard gearbox", "standard A/C", 5, "diesel",
+        voziloList.add(new Vozilo(1L,  "ZG9891 - GV","2DJRN5DG9ARP44306", 5, "standard shifter", "standard A/C", 5, "diesel",
                 LocalDate.of(2022,2,2), LocalDate.of(2023,2,2), 1000.2 ));
-        voziloList.add(new Vozilo(2L, "KA3232-OM", "WP0ZZZ99ZTS392124", 2, "sport gearbox", "sport A/C", 3, "diesel",
+        voziloList.add(new Vozilo(2L, "KA3232 - OM", "WP0ZZZ99ZTS392124", 2, "sport shifter", "sport A/C", 3, "diesel",
                 LocalDate.of(2022,2,2), LocalDate.of(2023,2,2), 22000.1));
     }
     @Override

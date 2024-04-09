@@ -1,6 +1,6 @@
 <h1>Popis vozila</h1>
 <ul class="list-group">
-  <tr *ngFor="let vozilo of vozila" class="list-group-item list-group-item-action" (click)="onVoziloSelected(vozilo)">
+  <tr *ngFor="let vozilo of vozila" class="list-group-item list-group-item-action">
     <td class="list-group-item text-light bg-primary"> {{ vozilo.registration }}</td>
     <td class="list-group-item"> {{ vozilo.vin }}</td>
     <td>
@@ -9,5 +9,61 @@
   </td>
   </tr>
 </ul>
+
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="registration">Registration: </label>
+      <input type="text" id="registration" name="registration" [(ngModel)]="newVozilo.registration" required>
+    </div>
+
+    <div class="form-group">
+      <label for="vin">Vehicle Identification Number: </label>
+      <input type="text" id="vin" name="vin" [(ngModel)]="newVozilo.vin" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="maxNumberOfPassenger">Max number of Passengers: </label>
+      <input type="number" id="maxNumberOfPassenger" name="maxNumberOfPassenger" [(ngModel)]="newVozilo.maxNumberOfPassenger" required>
+    </div>
+
+    <div class="form-group">
+      <label for="shifter">Shifter: </label>
+      <input type="text" id="shifter" name="shifter" [(ngModel)]="newVozilo.shifter" required>
+    </div>
+
+    <div class="form-group">
+      <label for="airConditioning">A/C: </label>
+      <input type="text" id="airConditioning" name="airConditioning" [(ngModel)]="newVozilo.airConditioning" required>
+    </div>
+
+    <div class="form-group">
+      <label for="numberOfDoors">Number of Doors: </label>
+      <input type="text" id="numberOfDoors" name="numberOfDoors" [(ngModel)]="newVozilo.numberOfDoors" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="fuelType">Fuel type: </label>
+      <input type="text" id="fuelType" name="fuelType" [(ngModel)]="newVozilo.fuelType" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="lastServiceDate">Last service Date: </label>
+      <input type="date" id="lastServiceDate" name="lastServiceDate" [(ngModel)]="newVozilo.lastServiceDate" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="nextServiceDate">Next service Date: </label>
+      <input type="date" id="nextServiceDate" name="nextServiceDate" [(ngModel)]="newVozilo.nextServiceDate" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="mileage">Mileage: </label>
+      <input type="number" id="mileage" name="mileage" [(ngModel)]="newVozilo.mileage" required>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
 
 <button (click)="returnToHome()">Natrag</button>
