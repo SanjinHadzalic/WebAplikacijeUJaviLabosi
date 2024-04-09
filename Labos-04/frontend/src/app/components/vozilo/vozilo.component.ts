@@ -39,4 +39,12 @@ export class VoziloComponent implements OnInit{
   onVoziloClick(id: number) {
     this.router.navigate(['vozilo', id])
   }
+
+  deleteVozilo(id:number) {
+    console.log('test')
+    this.voziloService.deleteVozilo(id).subscribe(data => {
+      console.log(data)
+      this.getVozila();
+    })
+  }
 }

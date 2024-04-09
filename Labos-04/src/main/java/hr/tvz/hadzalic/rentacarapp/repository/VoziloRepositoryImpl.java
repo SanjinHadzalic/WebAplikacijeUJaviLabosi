@@ -84,7 +84,7 @@ public class VoziloRepositoryImpl implements VoziloRepository{
 
     @Override
     public void delete(Long vehicleCode) {
-        voziloList.removeIf(vozilo -> Objects.equals(vozilo.getVin(), vehicleCode));
+        voziloList.removeIf(vozilo -> Objects.equals(vozilo.getId(), vehicleCode));
     }
 
     public Long generateId(List<Vozilo> voziloList) {

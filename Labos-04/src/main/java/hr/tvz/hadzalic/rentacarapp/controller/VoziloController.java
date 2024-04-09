@@ -77,9 +77,9 @@ public class VoziloController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{code}")
-    public void delete(@PathVariable Long code) {
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
         log.info("Called method delete()");
-        voziloService.delete(code);
+        voziloService.delete(id);
     }
 }

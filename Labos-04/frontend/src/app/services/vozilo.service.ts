@@ -60,4 +60,8 @@ export class VoziloService {
   getVoziloById(id: number) {
     return this.httpClient.get<Vozilo>(`${this.basUrl}/${id}`)
   }
+
+  deleteVozilo(id: number): Observable<Object>{
+    return this.httpClient.delete(`${this.basUrl}/${id}`)
+  } 
 }
