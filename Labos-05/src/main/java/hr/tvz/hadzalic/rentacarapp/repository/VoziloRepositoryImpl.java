@@ -1,59 +1,73 @@
 package hr.tvz.hadzalic.rentacarapp.repository;
 
 import hr.tvz.hadzalic.rentacarapp.entity.Vozilo;
+import hr.tvz.hadzalic.rentacarapp.mapper.VoziloMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Repository
 public class VoziloRepositoryImpl implements VoziloRepository{
-    private static List<Vozilo> voziloList = new ArrayList<>();
 
-    static {
-        voziloList.add(new Vozilo(1L,  "ZG9891 - GV","2DJRN5DG9ARP44306", 5, "standard shifter", "standard A/C", 5, "diesel",
-                LocalDate.of(2022,2,2), LocalDate.of(2023,2,2), 1000.2 ));
-        voziloList.add(new Vozilo(2L, "KA3232 - OM", "WP0ZZZ99ZTS392124", 2, "sport shifter", "sport A/C", 3, "diesel",
-                LocalDate.of(2022,2,2), LocalDate.of(2023,2,2), 22000.1));
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert jdbcInsert;
+    private List<Vozilo> voziloList;
+    private final String SQL_GET_ALL = "select * from Vozilo";
+    private final String SQL_UPDATE_VOZILO = "UPDATE VOZILO SET registration=?, vin=?, maxNumberOfPassenger=?, " +
+                                            "shifter=?, airConditioning=?, numberOfDoors=?, fuelType=?, " +
+                                            "lastServiceDate=?, nextServiceDate=?, mileage=? WHERE id=?";
+    private final String SQL_DELETE_VOZILO = "DELETE FROM VOZILO WHERE id = ?";
+    private final String SQL_CREATE_VOZILO = "INSERT INTO VOZILO(id, registration, vin, maxNumberOfPassenger, shifter, airConditioning, numberOfDoors, fuelType, " +
+            "                   lastServiceDate, nextServiceDate, mileage) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    @Autowired
+    public VoziloRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.jdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("VOZILO")
+                .usingGeneratedKeyColumns("id");
     }
+
     @Override
     public List<Vozilo> findAll() {
+        String sql = SQL_GET_ALL;
+        voziloList = jdbcTemplate.query(sql, new VoziloMapper());
         return voziloList;
     }
 
     @Override
     public Optional<Vozilo> findVoziloByCode(String code) {
-        return findAll().stream()
+        return voziloList.stream()
                 .filter(x -> x.getId().toString().equals(code))
                 .findFirst();
     }
 
     @Override
     public Optional<Vozilo> findVoziloByRegistration(String registration) {
-        return findAll().stream()
+        return voziloList.stream()
                 .filter(v -> v.getRegistration().equals(registration))
                 .findFirst();
     }
 
     @Override
     public Optional<Vozilo> findVoziloByVin(String vin) {
-        return findAll().stream()
+        return voziloList.stream()
                 .filter(v -> v.getVin().equals(vin))
                 .findFirst();
     }
 
     @Override
     public Optional<Vozilo> update(Long code, Vozilo vozilo) {
-        boolean exists = voziloList.removeIf(
-                v -> Objects.equals(v.getVin(), code) &&
-                        Objects.equals(v.getId(), vozilo.getId())
-        );
+        String sql = SQL_UPDATE_VOZILO;
+        int rowsAffected = jdbcTemplate.update(sql, vozilo.getRegistration(), vozilo.getVin(), vozilo.getMaxNumberOfPassenger(),
+                vozilo.getShifter(), vozilo.getAirConditioning(), vozilo.getNumberOfDoors(),
+                vozilo.getFuelType(), vozilo.getLastServiceDate(), vozilo.getNextSeviceDate(),
+                vozilo.getMileage(), code);
 
-        if(exists){
-            voziloList.add(vozilo);
+        if (rowsAffected > 0) {
             return Optional.of(vozilo);
         } else {
             return Optional.empty();
@@ -61,8 +75,13 @@ public class VoziloRepositoryImpl implements VoziloRepository{
 
     @Override
     public Optional<Vozilo> save(Vozilo vozilo) {
-        vozilo.setId(generateId(voziloList));
-        findAll().add(vozilo);
+        jdbcTemplate.update(SQL_CREATE_VOZILO,
+                    generateId(voziloList), vozilo.getRegistration(), vozilo.getVin(), vozilo.getMaxNumberOfPassenger(),
+                    vozilo.getShifter(), vozilo.getAirConditioning(), vozilo.getNumberOfDoors(),
+                    vozilo.getFuelType(), vozilo.getLastServiceDate(), vozilo.getNextSeviceDate(),
+                    vozilo.getMileage()
+                );
+
         return Optional.of(vozilo);
     }
 
@@ -84,11 +103,12 @@ public class VoziloRepositoryImpl implements VoziloRepository{
 
     @Override
     public void delete(Long vehicleCode) {
-        voziloList.removeIf(vozilo -> Objects.equals(vozilo.getId(), vehicleCode));
+        String sql = SQL_DELETE_VOZILO;
+        jdbcTemplate.update(sql, vehicleCode);
     }
 
     public Long generateId(List<Vozilo> voziloList) {
-        return voziloList.stream()
+        return findAll().stream()
                 .map(Vozilo::getId)
                 .max(Long::compare).get() + 1;
     }
