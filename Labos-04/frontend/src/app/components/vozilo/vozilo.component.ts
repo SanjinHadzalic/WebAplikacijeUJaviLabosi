@@ -90,6 +90,10 @@ export class VoziloComponent implements OnInit{
     this.router.navigate([''])
   }
 
+  toNextServiceDate() {
+    this.router.navigate(['next'])
+  }
+
   onVoziloClick(id: number) {
     this.router.navigate(['vozilo', id])
   }

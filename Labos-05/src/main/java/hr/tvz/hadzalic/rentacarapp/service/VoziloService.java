@@ -13,7 +13,7 @@ public interface VoziloService {
     VoziloDTO findVoziloByCode(String code);
     Vozilo findVoziloByID(Long id);
     Optional<VoziloDTO> save(VoziloCommand command);
-    Optional<VoziloDTO> findVoziloByRegistration(String registration);
+    Optional<Vozilo> findVoziloByRegistration(String registration);
     Optional<VoziloDTO> findVoziloByVin(String vin);
     Optional<VoziloDTO> update(Long code, VoziloCommand command);
     void delete(Long vehicleCode);

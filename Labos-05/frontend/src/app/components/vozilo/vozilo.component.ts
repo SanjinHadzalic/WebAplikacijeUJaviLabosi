@@ -16,10 +16,16 @@ import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
 })
 export class VoziloComponent implements OnInit{
   vozila: Vozilo[] = [];
+  filteredVoziloList: Vozilo[] = [];
   // selectedVozilo: Vozilo | null = null;
   newVozilo!: Vozilo;
 
-  constructor(private voziloService: VoziloService, private router: Router) {}
+  constructor(private voziloService: VoziloService, private router: Router) {
+    this.voziloService.getVoziloList().subscribe(res => {
+      this.filteredVoziloList = res;
+    })
+    this.filteredVoziloList = this.vozila;
+  }
 
   voziloForm = new FormGroup({
     registration: new FormControl("", [
@@ -60,7 +66,8 @@ export class VoziloComponent implements OnInit{
   })
 
   ngOnInit() : void {
-    this.getVozila();
+    // this.getVozila();
+    // this.filteredVoziloList = this.vozila;
     this.newVozilo = {
       id: 3, // or any default value
       registration: '',
@@ -130,6 +137,22 @@ export class VoziloComponent implements OnInit{
     this.voziloService.deleteVozilo(id).subscribe(data => {
       console.log(data)
       this.getVozila();
+    })
+  }
+
+  filterVozilo(text: string) {
+    console.log(text)
+    if(!text) {
+      this.voziloService.getVoziloList().subscribe(val => {
+        this.filteredVoziloList = val;
+      })
+      return;
+    }
+
+    this.voziloService.getVoziloByRegistration(text).subscribe(filVoz => {
+      console.log(filVoz)
+      this.filteredVoziloList.length = 0;
+      this.filteredVoziloList.push(filVoz);
     })
   }
 }

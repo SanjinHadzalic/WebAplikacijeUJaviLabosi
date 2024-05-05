@@ -7,6 +7,7 @@ import hr.tvz.hadzalic.rentacarapp.repository.VoziloRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,15 @@ public class VoziloServiceImpl implements VoziloService {
                 .map(this::convertVoziloToVoziloDTO)
                 .toList();
     }
+
+    @Override
+    public List<Vozilo> findNext() {
+        return voziloRepository.findAll().stream()
+                .filter(q -> q.getNextSeviceDate().isAfter(LocalDate.now()))
+                .toList()
+                ;
+    }
+
 
     @Override
     public List<Vozilo> fetchAll() {
@@ -61,6 +71,11 @@ public class VoziloServiceImpl implements VoziloService {
     public Optional<VoziloDTO> update(Long code, VoziloCommand command) {
         return voziloRepository.update(code, mapCommandToVozilo(command))
                 .map(this::convertVoziloToVoziloDTO);
+    }
+
+    @Override
+    public Optional<Vozilo> updateVozilo(Long id, Vozilo vozilo) {
+        return voziloRepository.update(id, vozilo);
     }
 
     @Override

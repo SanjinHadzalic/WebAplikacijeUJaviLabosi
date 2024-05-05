@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/vozilo")
@@ -27,11 +28,24 @@ public class VoziloController {
         log.info("Called method findAll()");
         return voziloService.fetchAll();
     }
-
+    @GetMapping("/next")
+    public List<Vozilo> getNext() {
+        return voziloService.findNext();
+    }
     @GetMapping("/{id}")
     public Vozilo getVoziloById(@PathVariable Long id) {
         log.info("Called method getVoziloById()");
         return voziloService.findVoziloByID(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vozilo> updateVozilo(@PathVariable Long id, @RequestBody Vozilo vozilo){
+        log.info("Called method updateVozilo()");
+        return voziloService.updateVozilo(id, vozilo)
+                .map(ResponseEntity::ok)
+                .orElseGet(
+                        () -> ResponseEntity.notFound().build()
+                );
     }
 
     @GetMapping("/code/{code}")
@@ -66,15 +80,15 @@ public class VoziloController {
                 );
     }
 
-    @PutMapping("/{code}")
-    public ResponseEntity<VoziloDTO> update(@PathVariable Long code, @Valid @RequestBody final VoziloCommand command) {
-        log.info("Called method update()");
-        return voziloService.update(code, command)
-                .map(ResponseEntity::ok)
-                .orElseGet(
-                        () -> ResponseEntity.notFound().build()
-                );
-    }
+//    @PutMapping("/{code}")
+//    public ResponseEntity<VoziloDTO> update(@PathVariable Long code, @Valid @RequestBody final VoziloCommand command) {
+//        log.info("Called method update()");
+//        return voziloService.update(code, command)
+//                .map(ResponseEntity::ok)
+//                .orElseGet(
+//                        () -> ResponseEntity.notFound().build()
+//                );
+//    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")

@@ -17,6 +17,7 @@ public class VoziloRepositoryImpl implements VoziloRepository{
     private final SimpleJdbcInsert jdbcInsert;
     private List<Vozilo> voziloList;
     private final String SQL_GET_ALL = "select * from Vozilo";
+    private final String SQL_GET_REGISTRATION = "SELECT * FROM VOZILO WHERE registration LIKE ?";
     private final String SQL_UPDATE_VOZILO = "UPDATE VOZILO SET registration=?, vin=?, maxNumberOfPassenger=?, " +
                                             "shifter=?, airConditioning=?, numberOfDoors=?, fuelType=?, " +
                                             "lastServiceDate=?, nextServiceDate=?, mileage=? WHERE id=?";
@@ -47,9 +48,8 @@ public class VoziloRepositoryImpl implements VoziloRepository{
 
     @Override
     public Optional<Vozilo> findVoziloByRegistration(String registration) {
-        return voziloList.stream()
-                .filter(v -> v.getRegistration().equals(registration))
-                .findFirst();
+        List<Vozilo> result =  jdbcTemplate.query(SQL_GET_REGISTRATION, new Object[]{registration.toUpperCase() + '%'}, new VoziloMapper());
+        return result.isEmpty() ? Optional.empty() : Optional.of(result.get(0));
     }
 
     @Override

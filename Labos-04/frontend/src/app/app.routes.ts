@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { VoziloDetailsComponent } from './components/vozilo-details/vozilo-details.component';
+import { VoziloNextComponent } from './vozilo-next/vozilo-next.component';
 
 export const routes: Routes = [
     {
@@ -17,6 +18,10 @@ export const routes: Routes = [
     {
         path: 'vozilo/:id',
         component: VoziloDetailsComponent
+    },
+    {
+        path: 'next',
+        component: VoziloNextComponent
     }
 ];
 

@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VoziloService {
 
-  private basUrl = "http://localhost:8080/vozilo"
+  private basUrl = "http://localhost:8082/vozilo"
 
   constructor(private httpClient: HttpClient) { }
 
@@ -72,7 +72,10 @@ export class VoziloService {
 
   createVozilo(vozilo: Vozilo): Observable<Object>{
     return this.httpClient.post(`${this.basUrl}`, vozilo);
-    
+  }
+
+  getVoziloByRegistration(registration: string): Observable<Vozilo>{
+    return this.httpClient.get<Vozilo>(`${this.basUrl}/registration/${registration}`);
   }
 
   deleteVozilo(id: number): Observable<Object>{

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Vozilo } from '../../interfaces/vozilo';
+import { VoziloNew } from '../../interfaces/vozilo-new';
 import { VoziloService } from '../../services/vozilo.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
   providers: [VoziloService]
 })
 export class VoziloComponent implements OnInit{
-  vozila: Vozilo[] = [];
+  vozila: Vozilo[]  = [];
   selectedVozilo: Vozilo | null = null;
 
   constructor(private voziloService: VoziloService, private router: Router) {}
@@ -30,7 +31,25 @@ export class VoziloComponent implements OnInit{
   }
 
   onVoziloSelected(vozilo: Vozilo) {
-    this.selectedVozilo = vozilo;
+    if(vozilo.registration.startsWith('ZG') || vozilo.registration.startsWith('RI')) {
+      this.selectedVozilo = vozilo;
+    } else {
+      this.selectedVozilo
+    }
   }
 
+  public sortVoziloDesc(): void {
+    this.vozila = this.vozila.sort((a,b) => a.registration.localeCompare(b.registration))
+  }
+
+  public sortVoziloAsc() : void {
+    this.vozila = this.vozila.sort((a,b) => b.registration.localeCompare(a.registration))
+  }
+
+  filterBy(brandInput: HTMLInputElement) {
+    if(brandInput.value) {
+      this.vozila = this.vozila.filter(q => q.vin.startsWith(brandInput.value))
+    } 
+    this.router.navigate([''])
+  }
 }

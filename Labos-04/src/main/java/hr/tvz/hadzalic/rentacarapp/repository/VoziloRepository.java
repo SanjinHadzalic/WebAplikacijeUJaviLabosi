@@ -11,6 +11,7 @@ public interface VoziloRepository {
     Optional<Vozilo> findVoziloByRegistration(String registration);
     Optional<Vozilo> findVoziloByVin(String vin);
     Optional<Vozilo> update(Long code, Vozilo vozilo);
+    Vozilo updateVozilo(Long id, Vozilo vozilo);
     Optional<Vozilo> save(Vozilo vozilo);
     boolean existsByRegistration(String registration);
     boolean existsByVin(String vin);

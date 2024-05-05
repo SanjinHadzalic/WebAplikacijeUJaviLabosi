@@ -13,3 +13,14 @@
     <li>Mjenjač: {{ selectedVozilo.shifter }}</li>
   </ul>
 </div>
+
+<div>
+  <button (click)="sortVoziloAsc()">Ascending</button>
+  <button (click)="sortVoziloDesc()">Descending</button>
+</div>
+
+<div>
+  <label for="filter">Filter vin: </label>
+  <input id="filter" type="text" #filterValue>
+  <button (click)="filterBy(filterValue)">Filter</button>
+</div>

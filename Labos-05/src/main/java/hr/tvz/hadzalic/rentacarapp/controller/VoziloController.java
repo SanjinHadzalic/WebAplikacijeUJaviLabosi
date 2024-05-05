@@ -41,7 +41,7 @@ public class VoziloController {
     }
 
     @GetMapping("/registration/{registration}")
-    public VoziloDTO getVoziloByRegistration(@PathVariable String registration) {
+    public Vozilo getVoziloByRegistration(@PathVariable String registration) {
         log.info("Called method getVoziloByRegistration()");
         return voziloService.findVoziloByRegistration(registration).get();
     }

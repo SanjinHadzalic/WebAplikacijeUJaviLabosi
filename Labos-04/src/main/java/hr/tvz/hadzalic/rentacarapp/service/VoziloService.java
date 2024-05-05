@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface VoziloService {
     List<VoziloDTO> findAll();
+    List<Vozilo> findNext();
     List<Vozilo> fetchAll();
     VoziloDTO findVoziloByCode(String code);
     Vozilo findVoziloByID(Long id);
@@ -16,5 +17,6 @@ public interface VoziloService {
     Optional<VoziloDTO> findVoziloByRegistration(String registration);
     Optional<VoziloDTO> findVoziloByVin(String vin);
     Optional<VoziloDTO> update(Long code, VoziloCommand command);
+    Optional<Vozilo> updateVozilo(Long id, Vozilo vozilo);
     void delete(Long vehicleCode);
 }

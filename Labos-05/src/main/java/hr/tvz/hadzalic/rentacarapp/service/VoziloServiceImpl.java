@@ -42,11 +42,8 @@ public class VoziloServiceImpl implements VoziloService {
     }
 
     @Override
-    public Optional<VoziloDTO> findVoziloByRegistration(String registration) {
-        return voziloRepository.findAll().stream()
-                .filter(q -> q.getRegistration().equals(registration))
-                .findFirst()
-                .map(this::convertVoziloToVoziloDTO);
+    public Optional<Vozilo> findVoziloByRegistration(String registration) {
+        return voziloRepository.findVoziloByRegistration(registration);
     }
 
     @Override
