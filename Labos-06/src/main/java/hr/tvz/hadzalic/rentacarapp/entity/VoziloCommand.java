@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class VoziloCommand {
@@ -47,4 +48,5 @@ public class VoziloCommand {
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Vehicle Identification Number must contain only numbers (0-9) or characters (a-z or A-Z)")
     private String vin;
 
+    private List<Review> reviews;
 }

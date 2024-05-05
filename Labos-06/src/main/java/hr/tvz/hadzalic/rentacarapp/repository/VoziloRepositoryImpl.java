@@ -64,7 +64,7 @@ public class VoziloRepositoryImpl implements VoziloRepository{
         String sql = SQL_UPDATE_VOZILO;
         int rowsAffected = jdbcTemplate.update(sql, vozilo.getRegistration(), vozilo.getVin(), vozilo.getMaxNumberOfPassenger(),
                 vozilo.getShifter(), vozilo.getAirConditioning(), vozilo.getNumberOfDoors(),
-                vozilo.getFuelType(), vozilo.getLastServiceDate(), vozilo.getNextSeviceDate(),
+                vozilo.getFuelType(), vozilo.getLastServiceDate(), vozilo.getNextServiceDate(),
                 vozilo.getMileage(), code);
 
         if (rowsAffected > 0) {
@@ -78,7 +78,7 @@ public class VoziloRepositoryImpl implements VoziloRepository{
         jdbcTemplate.update(SQL_CREATE_VOZILO,
                     generateId(voziloList), vozilo.getRegistration(), vozilo.getVin(), vozilo.getMaxNumberOfPassenger(),
                     vozilo.getShifter(), vozilo.getAirConditioning(), vozilo.getNumberOfDoors(),
-                    vozilo.getFuelType(), vozilo.getLastServiceDate(), vozilo.getNextSeviceDate(),
+                    vozilo.getFuelType(), vozilo.getLastServiceDate(), vozilo.getNextServiceDate(),
                     vozilo.getMileage()
                 );
 

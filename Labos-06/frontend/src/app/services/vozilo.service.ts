@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Vozilo } from '../interfaces/vozilo';
+import { Review } from '../interfaces/review';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class VoziloService {
 
   private basUrl = "http://localhost:8082/vozilo"
+  private basReview = "http://localhost:8082/review"
 
   constructor(private httpClient: HttpClient) { }
 
@@ -78,7 +80,14 @@ export class VoziloService {
     return this.httpClient.get<Vozilo>(`${this.basUrl}/registration/${registration}`);
   }
 
+  //reviews
+
+  getReviewsByVoziloRegistration(registration: string): Observable<Review[]> {
+    return this.httpClient.get<Review[]>(`${this.basReview}/${registration}`);
+  }
+
   deleteVozilo(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.basUrl}/${id}`)
   } 
+
 }

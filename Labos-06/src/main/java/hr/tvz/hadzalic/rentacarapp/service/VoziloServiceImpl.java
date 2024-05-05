@@ -3,6 +3,7 @@ package hr.tvz.hadzalic.rentacarapp.service;
 import hr.tvz.hadzalic.rentacarapp.dto.VoziloDTO;
 import hr.tvz.hadzalic.rentacarapp.entity.Vozilo;
 import hr.tvz.hadzalic.rentacarapp.entity.VoziloCommand;
+import hr.tvz.hadzalic.rentacarapp.repository.VoziloJpaRepository;
 import hr.tvz.hadzalic.rentacarapp.repository.VoziloRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,41 +15,41 @@ import java.util.Optional;
 @AllArgsConstructor
 public class VoziloServiceImpl implements VoziloService {
 
-    private VoziloRepository voziloRepository;
-
+//    private VoziloRepository voziloRepository;
+    private VoziloJpaRepository voziloJpaRepository;
     @Override
     public List<VoziloDTO> findAll() {
-        return voziloRepository.findAll().stream()
+        return voziloJpaRepository.findAll().stream()
                 .map(this::convertVoziloToVoziloDTO)
                 .toList();
     }
 
     @Override
     public List<Vozilo> fetchAll() {
-        return voziloRepository.findAll();
+        return voziloJpaRepository.findAll();
     }
 
 
     @Override
     public VoziloDTO findVoziloByCode(String code) {
-        return voziloRepository.findAll().stream().filter(q->q.getId().toString().equals(code))
+        return voziloJpaRepository.findAll().stream().filter(q->q.getId().toString().equals(code))
                 .findFirst().map(this::convertVoziloToVoziloDTO).get();
     }
 
     @Override
     public Vozilo findVoziloByID(Long id) {
-        return voziloRepository.findAll().stream()
+        return voziloJpaRepository.findAll().stream()
                 .filter(q->q.getId().equals(id)).findFirst().get();
     }
 
     @Override
     public Optional<Vozilo> findVoziloByRegistration(String registration) {
-        return voziloRepository.findVoziloByRegistration(registration);
+        return voziloJpaRepository.findVoziloByRegistration(registration);
     }
 
     @Override
     public Optional<VoziloDTO> findVoziloByVin(String vin) {
-        return voziloRepository.findAll().stream()
+        return voziloJpaRepository.findAll().stream()
                 .filter(q -> q.getVin().equals(vin))
                 .findFirst()
                 .map(this::convertVoziloToVoziloDTO);
@@ -56,26 +57,28 @@ public class VoziloServiceImpl implements VoziloService {
 
     @Override
     public Optional<VoziloDTO> update(Long code, VoziloCommand command) {
-        return voziloRepository.update(code, mapCommandToVozilo(command))
-                .map(this::convertVoziloToVoziloDTO);
+//        return voziloJpaRepository.updateVozilo(code, mapCommandToVozilo(command))
+//                .map(this::convertVoziloToVoziloDTO);
+        return Optional.of(new VoziloDTO());
     }
 
     @Override
     public Optional<VoziloDTO> save(VoziloCommand command) {
-        if(hasDuplicateRegistrationOrVin(command)) {
+        if (hasDuplicateRegistrationOrVin(command)) {
             return Optional.empty();
         }
-        return voziloRepository.save(mapCommandToVozilo(command)).map(this::mapVoziloToDTO);
-    }
 
+        Vozilo savedVozilo = voziloJpaRepository.save(mapCommandToVozilo(command));
+        return Optional.of(mapVoziloToDTO(savedVozilo));
+    }
     @Override
     public void delete(Long vehicleCode) {
-        voziloRepository.delete(vehicleCode);
+        voziloJpaRepository.deleteById(vehicleCode);
     }
 
     private boolean hasDuplicateRegistrationOrVin(VoziloCommand command) {
-        return voziloRepository.existsByRegistration(command.getRegistration()) ||
-                voziloRepository.existsByVin(command.getVin());
+        return voziloJpaRepository.existsByRegistration(command.getRegistration()) ||
+                voziloJpaRepository.existsByVin(command.getVin());
     }
 
     private VoziloDTO convertVoziloToVoziloDTO(Vozilo vozilo) {
@@ -96,7 +99,8 @@ public class VoziloServiceImpl implements VoziloService {
                 command.getFuelType(),
                 command.getLastServiceDate(),
                 command.getNextServiceDate(),
-                command.getMileage()
+                command.getMileage(),
+                command.getReviews()
         );
     }
 

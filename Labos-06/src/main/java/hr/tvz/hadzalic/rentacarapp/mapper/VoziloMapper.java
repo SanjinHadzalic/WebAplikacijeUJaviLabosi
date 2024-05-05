@@ -1,11 +1,13 @@
 package hr.tvz.hadzalic.rentacarapp.mapper;
 
+import hr.tvz.hadzalic.rentacarapp.entity.Review;
 import hr.tvz.hadzalic.rentacarapp.entity.Vozilo;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class VoziloMapper implements RowMapper<Vozilo> {
     @Override
@@ -22,8 +24,9 @@ public class VoziloMapper implements RowMapper<Vozilo> {
         LocalDate nextServiceDate = rs.getDate("nextServiceDate").toLocalDate();
         Double mileage = rs.getDouble("mileage");
 
-        Vozilo vozilo = new Vozilo(id, registration, vin, maxNumberOfPassenger, shifter, airConditioning,
-                numberOfDoors, fuelType, lastServiceDate, nextServiceDate, mileage);
+
+
+        Vozilo vozilo = new Vozilo();
 
         return vozilo;
     }

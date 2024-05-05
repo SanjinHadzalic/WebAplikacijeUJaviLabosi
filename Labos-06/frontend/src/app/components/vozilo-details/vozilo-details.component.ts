@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Vozilo } from '../../interfaces/vozilo';
+import { Review } from '../../interfaces/review';
 import { VoziloService } from '../../services/vozilo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
@@ -13,6 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class VoziloDetailsComponent {
   id!: number;
   vozilo!: Vozilo;
+  registration!: string;
+  reviews: Review[] = [];
 
   constructor(
     private voziloService: VoziloService,
@@ -23,7 +26,17 @@ export class VoziloDetailsComponent {
   ngOnInit() {
     this.voziloService.getVoziloById(this.route.snapshot.params['id']).subscribe((vozilo) => {
       this.vozilo = vozilo
+      this.registration = this.vozilo.registration;
+      this.loadReviewsForVozilo(this.registration);
     })
+
+
+  }
+
+  loadReviewsForVozilo(id: string) {
+    this.voziloService.getReviewsByVoziloRegistration(this.registration).subscribe((reviews) => {
+      this.reviews = reviews;
+    });
   }
 
   return() {

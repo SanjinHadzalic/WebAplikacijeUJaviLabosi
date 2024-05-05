@@ -133,10 +133,12 @@ export class VoziloComponent implements OnInit{
   }
 
   deleteVozilo(id:number) {
-    console.log('test')
     this.voziloService.deleteVozilo(id).subscribe(data => {
-      console.log(data)
       this.getVozila();
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/vozilo']);
+      })
+      console.log(data)
     })
   }
 
