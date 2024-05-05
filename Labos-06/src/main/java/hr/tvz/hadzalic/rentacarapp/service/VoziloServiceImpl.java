@@ -57,9 +57,16 @@ public class VoziloServiceImpl implements VoziloService {
 
     @Override
     public Optional<VoziloDTO> update(Long code, VoziloCommand command) {
-//        return voziloJpaRepository.updateVozilo(code, mapCommandToVozilo(command))
-//                .map(this::convertVoziloToVoziloDTO);
-        return Optional.of(new VoziloDTO());
+        Vozilo target = voziloJpaRepository.getReferenceById(code);
+
+        target.setRegistration(command.getRegistration());
+        target.setVin(command.getVin());
+        target.setMaxNumberOfPassenger(command.getMaxNumberOfPassenger());
+        target.setShifter(command.getShifter());
+        target.setAirConditioning(command.getAirConditioning());
+
+        voziloJpaRepository.save(target);
+        return Optional.of(convertVoziloToVoziloDTO(target));
     }
 
     @Override
@@ -68,8 +75,8 @@ public class VoziloServiceImpl implements VoziloService {
             return Optional.empty();
         }
 
-        Vozilo savedVozilo = voziloJpaRepository.save(mapCommandToVozilo(command));
-        return Optional.of(mapVoziloToDTO(savedVozilo));
+        voziloJpaRepository.save(mapCommandToVozilo(command));
+        return Optional.of(mapVoziloToDTO(mapCommandToVozilo(command)));
     }
     @Override
     public void delete(Long vehicleCode) {
@@ -89,7 +96,7 @@ public class VoziloServiceImpl implements VoziloService {
 
     private Vozilo mapCommandToVozilo(final VoziloCommand command) {
         return new Vozilo(
-                command.getId(),
+                99999L,
                 command.getRegistration(),
                 command.getVin(),
                 command.getMaxNumberOfPassenger(),

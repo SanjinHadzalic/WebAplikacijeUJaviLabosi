@@ -1,6 +1,9 @@
+-- ALTER TABLE review DROP CONSTRAINT FKLS0WMPVSKQHK0ECKSTXV94KD3;
+
 DROP TABLE IF EXISTS vozilo;
+
 CREATE TABLE vozilo (
-                        id BIGINT AUTO_INCREMENT PRIMARY KEY ,
+                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
                         registration VARCHAR(255) NOT NULL,
                         vin VARCHAR(255) NOT NULL,
                         max_Number_Of_Passenger INT NOT NULL,

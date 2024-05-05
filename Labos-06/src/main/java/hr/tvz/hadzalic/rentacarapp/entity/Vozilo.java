@@ -10,14 +10,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @Entity
-@Table(name = "vozilo")
+//@Table(name = "vozilo")
 public class Vozilo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @SequenceGenerator(name = "vozilo_seq", sequenceName = "VOZILO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "registration")
@@ -54,7 +52,19 @@ public class Vozilo {
     @JsonIgnore
     private List<Review> reviews;
 
-    public Vozilo(Long id, Integer maxNumberOfPassenger, String shifter, String airConditioning, Integer numberOfDoors, String fuelType, LocalDate lastServiceDate, LocalDate nextServiceDate, Double mileage, String registration, String vin) {
+    public Vozilo(Long id, String registration, String vin, Integer maxNumberOfPassenger, String shifter, String airConditioning, Integer numberOfDoors, String fuelType, LocalDate lastServiceDate, LocalDate nextServiceDate, Double mileage, List<Review> reviews) {
+        this.id = id;
+        this.registration = registration;
+        this.vin = vin;
+        this.maxNumberOfPassenger = maxNumberOfPassenger;
+        this.shifter = shifter;
+        this.airConditioning = airConditioning;
+        this.numberOfDoors = numberOfDoors;
+        this.fuelType = fuelType;
+        this.lastServiceDate = lastServiceDate;
+        this.nextServiceDate = nextServiceDate;
+        this.mileage = mileage;
+        this.reviews = reviews;
     }
 
     public Vozilo() {
