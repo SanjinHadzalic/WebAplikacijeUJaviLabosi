@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { VoziloDetailsComponent } from './components/vozilo-details/vozilo-details.component';
+import { ReviewListComponent } from './components/review-list/review-list.component';
+import { ReviewDetailsComponent } from './components/review-details/review-details.component';
 
 export const routes: Routes = [
     {
@@ -17,6 +19,14 @@ export const routes: Routes = [
     {
         path: 'vozilo/:id',
         component: VoziloDetailsComponent
+    },
+    {
+        path: 'review',
+        component: ReviewListComponent
+    },
+    {
+        path: 'review/:id',
+        component: ReviewDetailsComponent
     }
 ];
 
