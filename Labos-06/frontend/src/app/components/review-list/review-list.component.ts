@@ -114,6 +114,9 @@ export class ReviewListComponent implements OnInit{
     });
   }
 
+  reviewDetails(id: number) {
+    this.router.navigate(['review/id', id]);
+  }
 
   returnToHome() {
     this.router.navigate([''])
