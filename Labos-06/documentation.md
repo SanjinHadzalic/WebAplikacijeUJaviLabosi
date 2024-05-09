@@ -114,3 +114,7 @@ VALUES
 ('Needs Improvement', 'The car could use some maintenance. Issues with brakes.', 3, 1),
 ('Das Auto', 'The best Car you can currently find on car market', 5, 3);
 `
+
+- Unutar frontend sloja aplikacije (Angular) najbolja praksa je varijable/paramatre nazvati isto onakvima kako se zovu 
+u backend sloju aplikacije (Spring Boot) da ne bi doslo do nepredvidljivih gresaka tijekom POST metode (baca null 
+vrijednost umjesto Object)

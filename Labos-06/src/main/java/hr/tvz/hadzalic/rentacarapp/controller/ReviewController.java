@@ -40,6 +40,8 @@ public class ReviewController {
 
     @PostMapping
     public ResponseEntity<Review> save(@RequestBody final Review review) {
+        log.info("SAVE: " + review.getVozilo());
+
         return reviewService.save(review).map(
                 vozilo -> ResponseEntity
                         .status(HttpStatus.CREATED).body(vozilo))

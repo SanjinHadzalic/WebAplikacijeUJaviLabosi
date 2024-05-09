@@ -18,6 +18,7 @@ export class ReviewListComponent implements OnInit{
   reviews: Review[] = [];
   newReview!: Review;
   vozila!: Vozilo[];
+  selectedVoziloId!: number;
 
   constructor(private reviewService: ReviewService, private vozilaService: VoziloService, private router: Router) {
     this.reviewService.getReviewList().subscribe(res => {
@@ -46,20 +47,33 @@ export class ReviewListComponent implements OnInit{
     ]),
     grade: new FormControl("", [
       Validators.required
+    ]),
+    vozilo_id: new FormControl("", [
     ])
   })
 
   ngOnInit(): void {
+    this.getVozila()
     this.getReviews();
-    this.getVozila
     this.newReview = {
-      id: 6,
+      id: 1,
       title: '',
       text: '',
-      grade: 1
-
+      grade: 1,
+      vozilo: {
+        id: 3, 
+        registration: '',
+        vin: '',
+        maxNumberOfPassenger: 0,
+        shifter: 'normal',
+        airConditioning: '',
+        numberOfDoors: 0, 
+        fuelType: '',
+        lastServiceDate: new Date(2023,2,2),
+        nextServiceDate: new Date(2024,2,2),
+        mileage: 24534
+      }
     }
-    // throw new Error('Method not implemented.');
   }
 
   onReviewClick(id:number){
@@ -77,21 +91,21 @@ export class ReviewListComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.newReview)
     this.saveReview();
   }
 
   saveReview() {
     const formValue = this.reviewForm.value;
   
+    this.newReview.id = Math.max(...this.reviews.map(r=>r.id)) + 1;
     this.newReview.title = formValue.title!;
     this.newReview.text = formValue.text!;
-    this.newReview.grade = 5;
-    
+    this.newReview.grade = parseInt(formValue.grade!);
+    this.newReview.vozilo = this.vozila[this.selectedVoziloId - 1]
   
     this.reviewService.createReview(this.newReview).subscribe({
       next: (data) => {
-        console.log(data);
+        console.log('Unutar servisa:', data);
         location.reload(); 
       },
       error: (e) => {
@@ -104,5 +118,4 @@ export class ReviewListComponent implements OnInit{
   returnToHome() {
     this.router.navigate([''])
   }
-
 }

@@ -9,25 +9,25 @@ export class ReviewService {
 
   private baseUrl = "http://localhost:8082/review";
 
-  constructor(private HttpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   getReviewList(): Observable<Review[]> {
-    return this.HttpClient.get<Review[]>(`${this.baseUrl}`)
+    return this.httpClient.get<Review[]>(`${this.baseUrl}`)
   }
 
   getReviewById(id: number) {
-    return this.HttpClient.get<Review>(`${this.baseUrl}/id/${id}`);
+    return this.httpClient.get<Review>(`${this.baseUrl}/id/${id}`);
   }
 
   createReview(review: Review): Observable<Object> {
-    return this.HttpClient.post(`${this.baseUrl}`, review);
+    return this.httpClient.post(`${this.baseUrl}`, review);
   }
 
   updateReview(id: number, review: Review): Observable<Object> {
-    return this.HttpClient.put(`${this.baseUrl}/${id}`,review);
+    return this.httpClient.put(`${this.baseUrl}/${id}`,review);
   }
 
   deleteReview(id:number): Observable<Object> {
-    return this.HttpClient.delete(`${this.baseUrl}/${id}`);
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 }

@@ -6,6 +6,7 @@
       <td class="list-group-item text-light bg-primary"> {{ review.title }}</td>
       <td class="list-group-item"> {{ review.text }}</td>
       <td class="list-group-item"> {{ review.grade }}</td>
+      <td class="list-group-item"> {{ review.vozilo.registration}}</td>
       <td>
         <button (click) = "onReviewClick(review.id)" >Details</button>
         <button (click) = "deleteReview(review.id)">Delete</button>
@@ -24,7 +25,7 @@
         <div *ngIf="reviewForm.controls.title.errors?.['required']">
           Title is required.
         </div>
-        <div *ngIf="reviewForm.controls.title.errors?.['pattern']">title must be in format XXXXX - YYY.</div>
+        <div *ngIf="reviewForm.controls.title.errors?.['pattern']">title must be in format.</div>
       </div>
 
       <div class="form-group">
@@ -37,7 +38,7 @@
         <div *ngIf="reviewForm.controls.text.errors?.['required']">
             text is required.
         </div>
-        <div *ngIf="reviewForm.controls.text.errors?.['pattern']">text must be in format XXXXX - YYY.</div>
+        <div *ngIf="reviewForm.controls.text.errors?.['pattern']">text must be in format.</div>
       </div>
 
       <div class="form-group">
@@ -53,13 +54,13 @@
         <div *ngIf="reviewForm.controls.grade.errors?.['pattern']">grade must be in .</div>
       </div>
   
-      <p>You select your team using viewChild</p>
-      <select #teams (change)="returnToHome">
-        <option *ngFor="let vo of vozila" [value]="vozila">
+      <p>Select Vozilo registration</p>
+      <select [(ngModel)]="selectedVoziloId" name="vozilo_id" formControlName="vozilo_id">
+        <option *ngFor="let vo of vozila" [value]="vo.id">
             {{vo.registration}}
         </option>
       </select>
-
+      
   
       <button type="submit" [disabled]="!reviewForm.valid">Submit</button>
     </form>
