@@ -1,0 +1,70 @@
+<h1>Lista recenzija</h1>
+<ul class="list-group">
+
+  
+    <tr *ngFor="let review of reviews" class="list-group-item list-group-item-action">
+      <td class="list-group-item text-light bg-primary"> {{ review.title }}</td>
+      <td class="list-group-item"> {{ review.text }}</td>
+      <td class="list-group-item"> {{ review.grade }}</td>
+      <td class="list-group-item"> {{ review.vozilo.registration}}</td>
+      <td>
+        <button (click) = "onReviewClick(review.id)" >Details</button>
+        <button (click) = "deleteReview(review.id)">Delete</button>
+    </td>
+    </tr>
+  </ul>
+
+  <div>
+    <form  [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title: </label>
+        <input type="text" id="title" name="title" formControlName="title">
+      </div>
+  
+      <div *ngIf="reviewForm.controls.title.invalid && (reviewForm.controls.title.dirty || reviewForm.controls.title.touched)" class="displayError">
+        <div *ngIf="reviewForm.controls.title.errors?.['required']">
+          Title is required.
+        </div>
+        <div *ngIf="reviewForm.controls.title.errors?.['pattern']">title must be in format.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="text">Text: </label>
+        <input type="text" id="text" name="text" formControlName="text">
+      </div>
+
+
+      <div *ngIf="reviewForm.controls.text.invalid && (reviewForm.controls.text.dirty || reviewForm.controls.text.touched)" class="displayError">
+        <div *ngIf="reviewForm.controls.text.errors?.['required']">
+            text is required.
+        </div>
+        <div *ngIf="reviewForm.controls.text.errors?.['pattern']">text must be in format.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="grade">Grade: </label>
+        <input type="number" id="grade" name="grade" formControlName="grade">
+      </div>
+
+
+      <div *ngIf="reviewForm.controls.grade.invalid && (reviewForm.controls.grade.dirty || reviewForm.controls.grade.touched)" class="displayError">
+        <div *ngIf="reviewForm.controls.grade.errors?.['required']">
+          Title is required.
+        </div>
+        <div *ngIf="reviewForm.controls.grade.errors?.['pattern']">grade must be in .</div>
+      </div>
+  
+      <p>Select Vozilo registration</p>
+      <select [(ngModel)]="selectedVoziloId" name="vozilo_id" formControlName="vozilo_id">
+        <option *ngFor="let vo of vozila" [value]="vo.id">
+            {{vo.registration}}
+        </option>
+      </select>
+      
+  
+      <button type="submit" [disabled]="!reviewForm.valid">Submit</button>
+    </form>
+  </div>
+  
+  <button (click)="returnToHome()">Natrag</button>
+  
