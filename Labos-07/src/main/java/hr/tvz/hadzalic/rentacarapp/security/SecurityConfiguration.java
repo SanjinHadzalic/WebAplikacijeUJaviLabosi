@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @Configuration
@@ -35,12 +38,20 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/auth/api/v1/login", "/auth/api/v1/refreshToken").permitAll()
                         .requestMatchers("/bugtracking/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/vozilo/**").hasAnyRole("ROLES_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/vozilo/**").hasAnyRole("ROLES_USER")
+                        .requestMatchers(HttpMethod.PUT, "/vozilo/**").hasAnyRole("ROLES_USER")
                         .requestMatchers( "/vozilo/**").authenticated()
                         .requestMatchers("/review/**").authenticated()
                         .requestMatchers("/h2-console/**").authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+//                    .formLogin(formLogin -> formLogin
+//                            .loginProcessingUrl("/auth/api/v1/login")
+//                            .defaultSuccessUrl("/")
+//                            .permitAll()
+//                    )
+                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .headers().frameOptions().disable();
         return http.build();
     }

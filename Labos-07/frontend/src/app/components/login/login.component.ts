@@ -17,11 +17,9 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       response => {
         console.log('Login successful');
-        // Store the token or perform any other actions
       },
       error => {
         console.log('Login failed');
-        // Handle login error
       }
     );
   }

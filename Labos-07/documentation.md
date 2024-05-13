@@ -118,3 +118,8 @@ VALUES
 - Unutar frontend sloja aplikacije (Angular) najbolja praksa je varijable/paramatre nazvati isto onakvima kako se zovu 
 u backend sloju aplikacije (Spring Boot) da ne bi doslo do nepredvidljivih gresaka tijekom POST metode (baca null 
 vrijednost umjesto Object)
+
+- insert, update USER
+- delete ADMIN
+- loginForm
+- tko je napravio koji Review
