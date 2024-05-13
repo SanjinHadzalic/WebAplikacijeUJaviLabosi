@@ -25,3 +25,34 @@ CREATE TABLE review (
                         vozilo_id BIGINT,
                         FOREIGN KEY (vozilo_id) REFERENCES vozilo(id)
 );
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS authority;
+CREATE TABLE authority (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users_authority(
+    user_id BIGINT,
+    authority_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (authority_id) REFERENCES authority(id),
+    PRIMARY KEY (user_id, authority_id)
+);
+
+CREATE TABLE IF NOT EXISTS REFRESH_TOKEN (
+     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+     token VARCHAR(255),
+     expiry_date TIMESTAMP,
+     user_id BIGINT,
+     FOREIGN KEY (user_id) REFERENCES USERS(id)
+    );

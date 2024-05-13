@@ -13,3 +13,15 @@ VALUES
     ('Good Experience', 'Had a pleasant experience with this vehicle.', 4, 2),
     ('Needs Improvement', 'The car could use some maintenance. Issues with brakes.', 3, 1),
     ('Das Auto', 'The best Car you can currently find on car market', 5, 3);
+
+INSERT INTO users(username, password, first_name, last_name) VALUES('user', '$2a$12$wdf2YclvjZhvX8dEMLBH9OueMr00mmNSVSpAeh7VcRt/JzWNmtTpy', 'user', 'user'),
+                                            ('admin', '$2a$12$wdf2YclvjZhvX8dEMLBH9OueMr00mmNSVSpAeh7VcRt/JzWNmtTpy', 'admin', 'admin'),
+                                            ('john', '$2a$12$wdf2YclvjZhvX8dEMLBH9OueMr00mmNSVSpAeh7VcRt/JzWNmtTpy', 'John', 'Doe');
+
+INSERT INTO authority(name) VALUES('ROLES_USER'),
+                                  ('ROLES_ADMIN');
+
+INSERT INTO users_authority(user_id, authority_id) VALUES(1,1),
+                                                         (2, 1),
+                                                         (2, 2),
+                                                         (3, 1);
