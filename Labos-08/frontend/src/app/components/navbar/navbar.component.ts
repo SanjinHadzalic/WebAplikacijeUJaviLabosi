@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification-service.service';
+import { JwtDecoderService } from '../../services/jwt-decoder.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +11,23 @@ import { NotificationService } from '../../services/notification-service.service
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  decodedToken: any;
+  username!: string;
 
-  constructor(private router: Router, private notificationService: NotificationService) {}
+
+  constructor(private router: Router, private notificationService: NotificationService, private decoderService: JwtDecoderService) {
+    this.username = this.getUsername()
+
+  }
+
+
+  getUsername():string {
+    const jwtToken = localStorage.getItem('JWT');
+    this.decodedToken = this.decoderService.decodeToken(jwtToken ?? "qwe")
+
+
+    return this.decodedToken.sub;
+  }
 
   logoutUser():void {
     localStorage.removeItem('JWT');

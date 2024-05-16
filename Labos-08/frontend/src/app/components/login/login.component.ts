@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NotificationService } from '../../services/notification-service.service';
+import { JwtDecoderService } from '../../services/jwt-decoder.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,16 @@ import { NotificationService } from '../../services/notification-service.service
 export class LoginComponent implements OnInit{
   loginForm!: FormGroup;
   errorMessage!: string;
+  decodedToken: any;
 
   constructor(
     private authService: AuthService, 
     private formBuilder: FormBuilder,
     private router: Router,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private jwtDecoderService: JwtDecoderService) {
+
+     }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -40,6 +45,11 @@ export class LoginComponent implements OnInit{
         this.notificationService.authentificationMessageSuccess("Logged in!", "Successfully logged in redirecting to home...")
         const jwtToken = response.accessToken
         localStorage.setItem('JWT', jwtToken)
+
+        this.decodedToken = this.jwtDecoderService.decodeToken(jwtToken)
+        
+        console.log(this.decodedToken.sub)
+
         this.router.navigate(['/'])
       } 
     })
