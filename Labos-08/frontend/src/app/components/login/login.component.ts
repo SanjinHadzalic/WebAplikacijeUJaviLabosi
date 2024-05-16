@@ -37,13 +37,16 @@ export class LoginComponent implements OnInit{
 
     this.authService.login(username, password).subscribe((response) => {
       if(response.accessToken){
-        // alert(response.accessToken)
         this.notificationService.authentificationMessageSuccess("Logged in!", "Successfully logged in redirecting to home...")
         const jwtToken = response.accessToken
         localStorage.setItem('JWT', jwtToken)
         this.router.navigate(['/'])
       } 
     })
+  }
+
+  registerUser(){
+    this.router.navigate(['/register']);
   }
 
 }

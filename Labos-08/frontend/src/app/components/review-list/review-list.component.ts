@@ -6,10 +6,11 @@ import { Review } from '../../interfaces/review';
 import { Vozilo } from '../../interfaces/vozilo';
 import { Router } from '@angular/router';
 import { VoziloService } from '../../services/vozilo.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-review-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent],
   templateUrl: './review-list.component.html',
   styleUrl: './review-list.component.css',
   providers: [ReviewService, VoziloService]

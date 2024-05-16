@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-vozilo',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent],
   templateUrl: './vozilo.component.html',
   styleUrl: './vozilo.component.css',
   providers: [VoziloService]

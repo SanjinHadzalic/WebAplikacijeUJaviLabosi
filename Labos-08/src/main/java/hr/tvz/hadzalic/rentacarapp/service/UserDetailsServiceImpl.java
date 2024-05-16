@@ -4,6 +4,7 @@ import hr.tvz.hadzalic.rentacarapp.repository.UserRepository;
 import hr.tvz.hadzalic.rentacarapp.security.UserInfo;
 import hr.tvz.hadzalic.rentacarapp.security.UserRole;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
@@ -41,5 +43,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .credentialsExpired(false)
                 .disabled(false)
                 .build();
+    }
+
+    public void save(UserInfo userInfo) {
+        log.info("PRIOVJERA 2 "+userInfo.getPassword());
+        userRepository.save(userInfo);
     }
 }

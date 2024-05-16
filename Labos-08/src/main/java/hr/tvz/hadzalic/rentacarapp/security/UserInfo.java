@@ -23,9 +23,8 @@ public class UserInfo {
     @Column(name = "username")
     private String username;
     @Column(name = "password")
-    @JsonIgnore
     private String password;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_authority",
             joinColumns = { @JoinColumn(name = "user_id")},
