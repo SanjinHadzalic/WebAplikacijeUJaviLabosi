@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../interfaces/user';
+import { UserInfo } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
-
+import { UserRole } from '../../interfaces/user-roles';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit{
-  newUser!: User;
+  newUser!: UserInfo;
+  newRole: UserRole = {id:1, name: 'ROLES_USER'}
 
   constructor(
     private authService: AuthService
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit{
       id: 4,
       username: '',
       password: '',
-      roles: Array.of('')
+      roles: Array.of(this.newRole)
       // first_name: '',
       // last_name: ''
     }
@@ -38,7 +39,6 @@ export class RegisterComponent implements OnInit{
 
   onSubmit() {
     if(this.registerForm.valid) {
-      console.log('prije sveg')
       const formValue = this.registerForm.value
 
       this.newUser.username = formValue.username!;
@@ -48,9 +48,8 @@ export class RegisterComponent implements OnInit{
 
       console.log(this.newUser)
 
-      this.authService.register(this.newUser).subscribe({
+      this.authService.registerUser(this.newUser).subscribe({
         next: (data) => {
-          console.log('unutar metode register() ', data)
           location.reload()
         },
         error: (e) => {

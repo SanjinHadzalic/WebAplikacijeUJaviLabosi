@@ -66,8 +66,6 @@ public class AuthController {
     @PostMapping("/api/v1/register")
     public ResponseEntity<UserInfo> registerUser(@RequestBody UserInfo userInfo) {
         log.info("Provjera: " + userInfo);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-        userInfo.setPassword(encoder.encode("root"));
         userDetailsService.save(userInfo);
         return  ResponseEntity.ofNullable(userInfo);
     }

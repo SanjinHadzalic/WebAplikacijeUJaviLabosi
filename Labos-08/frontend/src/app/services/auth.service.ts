@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { User } from '../interfaces/user';
+import { UserInfo } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,8 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/logout`, {}, this.httpOptions)
   }
 
-  register(user: User): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/register`, {user})
+  registerUser(user: UserInfo): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/register`, user)
   } 
 
   refreshToken(): Observable<any> {
