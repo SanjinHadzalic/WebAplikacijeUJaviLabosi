@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { JwtDecoderService } from '../../services/jwt-decoder.service';
 
 @Component({
   selector: 'app-vozilo',
@@ -21,7 +22,9 @@ export class VoziloComponent implements OnInit{
   // selectedVozilo: Vozilo | null = null;
   newVozilo!: Vozilo;
 
-  constructor(private voziloService: VoziloService, private router: Router) {
+  constructor(private voziloService: VoziloService, private router: Router,
+     private decoderService: JwtDecoderService
+  ) {
     this.voziloService.getVoziloList().subscribe(res => {
       this.filteredVoziloList = res;
     })
@@ -103,6 +106,7 @@ export class VoziloComponent implements OnInit{
   }
 
   saveVozilo() {
+
     const formValue = this.voziloForm.value;
   
     this.newVozilo.registration = formValue.registration!;

@@ -9,6 +9,8 @@ import { ReviewDetailsComponent } from './components/review-details/review-detai
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guard/auth.guard';
+import { AdminAuthGuard } from './guard/admin-auth.guard';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 export const routes: Routes = [
     {
@@ -18,19 +20,23 @@ export const routes: Routes = [
     },
     {
         path: 'vozilo',
-        component: VoziloComponent
+        component: VoziloComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'vozilo/:id',
-        component: VoziloDetailsComponent
+        component: VoziloDetailsComponent,
+        canActivate: [AdminAuthGuard]
     },
     {
         path: 'review',
-        component: ReviewListComponent
+        component: ReviewListComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'review/:id',
-        component: ReviewDetailsComponent
+        component: ReviewDetailsComponent,
+        canActivate: [AdminAuthGuard]
     },
     {
         path: 'login',
@@ -39,6 +45,10 @@ export const routes: Routes = [
     {
         path:'register',
         component:RegisterComponent
+    },
+    {
+        path: 'forbidden',
+        component:ForbiddenComponent
     }
 ];
 

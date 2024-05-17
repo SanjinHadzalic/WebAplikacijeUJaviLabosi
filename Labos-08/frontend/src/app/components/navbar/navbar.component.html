@@ -4,7 +4,7 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Java web aplikacije</span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <p class="text-white flex items-center mr-2.5">{{username}}</p>
+            <p class="text-white flex items-center mr-2.5">{{username.toUpperCase()}}</p>
             <button type="button" (click)="logoutUser()" class="">logout</button>
         </div>
     </div>
