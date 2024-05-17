@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserInfo } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { UserRole } from '../../interfaces/user-roles';
+import { NotificationService } from '../../services/notification-service.service';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -14,9 +15,10 @@ import { UserRole } from '../../interfaces/user-roles';
 export class RegisterComponent implements OnInit{
   newUser!: UserInfo;
   newRole: UserRole = {id:1, name: 'ROLES_USER'}
-
+  
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: NotificationService
   ){}
   
   registerForm = new FormGroup({
@@ -50,7 +52,7 @@ export class RegisterComponent implements OnInit{
 
       this.authService.registerUser(this.newUser).subscribe({
         next: (data) => {
-          location.reload()
+          this.notificationService.successNotificationRegisterWithRedirection('Registration successful', 'Now get out of here!')
         },
         error: (e) => {
           console.log('error', e);
