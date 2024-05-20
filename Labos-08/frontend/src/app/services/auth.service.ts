@@ -26,6 +26,10 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/register`, user)
   } 
 
+  getUsers(): Observable<any> {
+    return this.http.get<UserInfo[]>(`${this.baseUrl}/users`);
+  }
+
   refreshToken(): Observable<any> {
     const refreshToken = localStorage.getItem('refreshToken');
 

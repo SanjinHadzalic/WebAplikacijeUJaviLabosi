@@ -1,6 +1,7 @@
 package hr.tvz.hadzalic.rentacarapp.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import hr.tvz.hadzalic.rentacarapp.entity.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,4 +32,7 @@ public class UserInfo {
             inverseJoinColumns = { @JoinColumn(name = "authority_id")}
     )
     private List<UserRole> roles = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Review> review;
 }

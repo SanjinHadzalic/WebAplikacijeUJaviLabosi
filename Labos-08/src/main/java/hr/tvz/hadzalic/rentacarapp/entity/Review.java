@@ -1,5 +1,6 @@
 package hr.tvz.hadzalic.rentacarapp.entity;
 
+import hr.tvz.hadzalic.rentacarapp.security.UserInfo;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,4 +20,7 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "vozilo_id")
     private Vozilo vozilo;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserInfo user;
 }

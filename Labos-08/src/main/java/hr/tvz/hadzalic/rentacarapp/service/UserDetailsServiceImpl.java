@@ -52,4 +52,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         userRepository.save(userInfo);
     }
+
+    public List<UserInfo> getAll() {
+        return userRepository.findAll();
+    }
 }

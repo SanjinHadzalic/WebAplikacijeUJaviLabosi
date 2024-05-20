@@ -7,6 +7,8 @@ import { Vozilo } from '../../interfaces/vozilo';
 import { Router } from '@angular/router';
 import { VoziloService } from '../../services/vozilo.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { AuthService } from '../../services/auth.service';
+import { UserInfo } from '../../interfaces/user';
 @Component({
   selector: 'app-review-list',
   standalone: true,
@@ -19,9 +21,13 @@ export class ReviewListComponent implements OnInit{
   reviews: Review[] = [];
   newReview!: Review;
   vozila!: Vozilo[];
+  users!: UserInfo[];
   selectedVoziloId!: number;
 
-  constructor(private reviewService: ReviewService, private vozilaService: VoziloService, private router: Router) {
+  constructor(private reviewService: ReviewService, 
+    private vozilaService: VoziloService,
+    private router: Router,
+    private authService: AuthService) {
     this.reviewService.getReviewList().subscribe(res => {
       this.reviews = res;
     })
@@ -36,6 +42,12 @@ export class ReviewListComponent implements OnInit{
   private getVozila() {
     this.vozilaService.getVoziloList().subscribe(voz=>{
       this.vozila = voz;
+    })
+  }
+
+  private getUsers() {
+    this.authService.getUsers().subscribe(user => {
+      this.users = user;
     })
   }
 
@@ -56,6 +68,7 @@ export class ReviewListComponent implements OnInit{
   ngOnInit(): void {
     this.getVozila()
     this.getReviews();
+    this.getUsers();
     this.newReview = {
       id: 1,
       title: '',
@@ -73,6 +86,12 @@ export class ReviewListComponent implements OnInit{
         lastServiceDate: new Date(2023,2,2),
         nextServiceDate: new Date(2024,2,2),
         mileage: 24534
+      },
+      user: {
+        id: 1,
+        username: '',
+        password: '',
+        roles: []
       }
     }
   }

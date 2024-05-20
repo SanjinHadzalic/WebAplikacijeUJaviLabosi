@@ -8,6 +8,7 @@
       <td class="list-group-item"> {{ review.text }}</td>
       <td class="list-group-item"> {{ review.grade }}</td>
       <td class="list-group-item"> {{ review.vozilo.registration}}</td>
+      <td class="list-group-item"> {{ review.user.username}}</td>
       <td>
         <button (click) = "onReviewClick(review.id)" >Details</button>
         <button (click) = "deleteReview(review.id)">Delete</button>

@@ -35,7 +35,8 @@ public class SecurityConfiguration {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/auth/api/v1/login", "/auth/api/v1/refreshToken", "/auth/api/v1/register").permitAll()
+                        .requestMatchers("/auth/api/v1/login", "/auth/api/v1/refreshToken",
+                                "/auth/api/v1/register", "/auth/api/v1/users").permitAll()
                         .requestMatchers("/bugtracking/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/vozilo/**").hasAnyRole("ROLES_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/vozilo/**").hasAnyRole("ROLES_USER")

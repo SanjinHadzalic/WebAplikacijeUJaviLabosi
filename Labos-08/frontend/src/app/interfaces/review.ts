@@ -1,3 +1,4 @@
+import { UserInfo } from "./user";
 import { Vozilo } from "./vozilo";
 
 export interface Review {
@@ -6,4 +7,5 @@ export interface Review {
     text: string;
     grade: number;
     vozilo: Vozilo;
+    user: UserInfo;
 }

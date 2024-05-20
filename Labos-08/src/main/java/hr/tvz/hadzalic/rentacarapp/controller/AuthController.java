@@ -19,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("auth")
 @AllArgsConstructor
@@ -70,4 +72,8 @@ public class AuthController {
         return  ResponseEntity.ofNullable(userInfo);
     }
 
+    @GetMapping("/api/v1/users")
+    public List<UserInfo> getAll() {
+        return userDetailsService.getAll();
+    }
 }

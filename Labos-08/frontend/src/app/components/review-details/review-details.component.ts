@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { Vozilo } from '../../interfaces/vozilo';
 import { VoziloComponent } from '../vozilo/vozilo.component';
 import { VoziloService } from '../../services/vozilo.service';
+import { JwtDecoderService } from '../../services/jwt-decoder.service';
 
 @Component({
   selector: 'app-review-details',
@@ -23,13 +24,15 @@ export class ReviewDetailsComponent {
   reviewForm!: FormGroup
   selectedVoziloId!: number;
   vozila!: Vozilo[];
+  decoded!: any;
 
   constructor(
     private reviewService: ReviewService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private voziloService: VoziloService
+    private voziloService: VoziloService,
+    private decodeService: JwtDecoderService
   ){}
 
   ngOnInit(){
@@ -60,12 +63,16 @@ export class ReviewDetailsComponent {
 
 
   updateReview(): void {
+    const jwtToken = localStorage.getItem('JWT')
+    this.decoded = this.decodeService.decodeToken(jwtToken ?? "emptyToken")
+
     const updatedReview: Review = {
       id: this.id,
       title: this.reviewForm.value.title,
       text: this.reviewForm.value.text,
       grade: this.reviewForm.value.grade,
-      vozilo: this.vozila[this.selectedVoziloId - 1]
+      vozilo: this.vozila[this.selectedVoziloId - 1],
+      user: this.decoded.sub
     }
 
     this.reviewService.updateReview(this.id,updatedReview).subscribe(()=>{
