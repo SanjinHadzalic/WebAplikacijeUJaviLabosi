@@ -7,16 +7,16 @@ INSERT INTO VOZILO( registration, vin, max_Number_Of_Passenger, shifter, air_Con
                                                                   ('DA1234 - BJ', 'SR0ZZZ99ZTS391111', 4, 'basic shifter', 'upgraded A/C', 5, 'electricity',
                                                                    '2022-02-02', '2023-02-02', 12343.6);
 
-INSERT INTO review (title, text, grade, vozilo_id)
-VALUES
-    ('Great Car!', 'The car is amazing. Smooth ride and great fuel efficiency.', 5, 1),
-    ('Good Experience', 'Had a pleasant experience with this vehicle.', 4, 2),
-    ('Needs Improvement', 'The car could use some maintenance. Issues with brakes.', 3, 1),
-    ('Das Auto', 'The best Car you can currently find on car market', 5, 3);
-
 INSERT INTO users(username, password, first_name, last_name) VALUES('user', '$2a$12$wdf2YclvjZhvX8dEMLBH9OueMr00mmNSVSpAeh7VcRt/JzWNmtTpy', 'user', 'user'),
                                             ('admin', '$2a$12$wdf2YclvjZhvX8dEMLBH9OueMr00mmNSVSpAeh7VcRt/JzWNmtTpy', 'admin', 'admin'),
                                             ('john', '$2a$12$wdf2YclvjZhvX8dEMLBH9OueMr00mmNSVSpAeh7VcRt/JzWNmtTpy', 'John', 'Doe');
+INSERT INTO review (title, text, grade, vozilo_id, user_id)
+VALUES
+    ('Great Car!', 'The car is amazing. Smooth ride and great fuel efficiency.', 5, 1, 3),
+    ('Good Experience', 'Had a pleasant experience with this vehicle.', 4, 2, 3),
+    ('Needs Improvement', 'The car could use some maintenance. Issues with brakes.', 3, 1, 1),
+    ('Das Auto', 'The best Car you can currently find on car market', 5, 3, 1);
+
 
 INSERT INTO authority(name) VALUES('ROLES_USER'),
                                   ('ROLES_ADMIN');

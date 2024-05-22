@@ -15,17 +15,6 @@ CREATE TABLE vozilo (
                         next_Service_Date DATE NOT NULL,
                         mileage DOUBLE NOT NULL
 );
-
-DROP TABLE IF EXISTS review;
-CREATE TABLE review (
-                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                        title VARCHAR(255) NOT NULL,
-                        text VARCHAR(1000) NOT NULL,
-                        grade INT NOT NULL,
-                        vozilo_id BIGINT,
-                        FOREIGN KEY (vozilo_id) REFERENCES vozilo(id)
-);
-
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -34,6 +23,19 @@ CREATE TABLE users (
     first_name VARCHAR(255),
     last_name VARCHAR(255)
 );
+
+DROP TABLE IF EXISTS review;
+CREATE TABLE review (
+                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        title VARCHAR(255) NOT NULL,
+                        text VARCHAR(1000) NOT NULL,
+                        grade INT NOT NULL,
+                        vozilo_id BIGINT,
+                        user_id BIGINT,
+                        FOREIGN KEY (vozilo_id) REFERENCES vozilo(id),
+                        FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 
 DROP TABLE IF EXISTS authority;
 CREATE TABLE authority (
