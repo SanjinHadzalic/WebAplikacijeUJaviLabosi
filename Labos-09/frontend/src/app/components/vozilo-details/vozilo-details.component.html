@@ -1,0 +1,57 @@
+<div>
+    <h2>Vozilo Details</h2>
+    <table>
+      <tr>
+        <th>Registration</th>
+        <td>{{ vozilo?.registration }}</td>
+      </tr>
+      <tr>
+        <th>Vehicle Identification Number</th>
+        <td>{{ vozilo?.vin }}</td>
+      </tr>
+      <tr>
+        <th>Max number of Passengers</th>
+        <td>{{ vozilo?.maxNumberOfPassenger }}</td>
+      </tr>
+      <tr>
+        <th>Shifter</th>
+        <td>{{ vozilo?.shifter }}</td>
+      </tr>
+      <tr>
+        <th>A/C</th>
+        <td>{{ vozilo?.airConditioning }}</td>
+      </tr>
+      <tr>
+        <th>Number of Doors</th>
+        <td>{{ vozilo?.numberOfDoors }}</td>
+      </tr>
+      <tr>
+        <th>Fuel type</th>
+        <td>{{ vozilo?.fuelType }}</td>
+      </tr>
+      <tr>
+        <th>Reviews</th>
+        <td>
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let review of reviews">
+                <td>{{ review.title }}</td>
+                <td>{{ review.text }}</td>
+                <td>{{ review.grade }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+  
+    <button (click)="return()">Return</button>
+  </div>
+  

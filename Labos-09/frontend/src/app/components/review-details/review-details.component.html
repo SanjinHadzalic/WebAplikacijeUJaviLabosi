@@ -1,0 +1,29 @@
+<div>
+    <h2>Update Review</h2>
+    <form [formGroup]="reviewForm" (ngSubmit)="updateReview()">
+      <div>
+        <label>Title</label>
+        <input type="text" formControlName="title">
+      </div>
+      <div>
+        <label>Text</label>
+        <textarea formControlName="text"></textarea>
+      </div>
+      <div>
+        <label>Grade</label>
+        <input type="number" formControlName="grade">
+      </div>
+      <div>
+          <p>Select Vozilo registration</p>
+          <select [(ngModel)]="selectedVoziloId" name="vozilo" formControlName="vozilo">
+            <option *ngFor="let vo of vozila" [value]="vo.id">
+                {{vo.registration}}
+            </option>
+          </select>
+      </div>
+
+      <button type="submit">Save</button>
+      <button type="button" (click)="return()">Return</button>
+    </form>
+  </div>
+  
