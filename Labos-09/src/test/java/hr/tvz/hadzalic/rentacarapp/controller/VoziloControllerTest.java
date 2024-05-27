@@ -20,17 +20,20 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(VoziloController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 class VoziloControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -40,52 +43,65 @@ class VoziloControllerTest {
     private JwtAuthFilter jwtAuthFilter;
 
     @Test
-    @WithMockUser
     void shouldReturnAll() throws Exception {
         Vozilo vozilo1 = new Vozilo();
-        vozilo1.setFuelType("gas");
+        vozilo1.setId(1L);
         Vozilo vozilo2 = new Vozilo();
-        vozilo2.setFuelType("ec");
+        vozilo2.setId(2L);
 
         Mockito.when(voziloService.fetchAll()).thenReturn(Arrays.asList(vozilo1, vozilo2));
 
         mvc.perform(MockMvcRequestBuilders
-                        .get("/vozilo").with(user("admin")
+                        .get("/vozilo")
+                                .with(user("admin")
                                 .password("root")
-                                .roles("ROLES_ADMIN")
-                                )
+                                .roles("ROLES_ADMIN"))
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1L"));
     }
 
     @Test
-    void getVoziloById() {
+    void getVoziloById() throws Exception {
+        Vozilo vozilo1 = new Vozilo();
+        vozilo1.setId(1L);
+
+        Mockito.when(voziloService.findVoziloByID(1L)).thenReturn(vozilo1);
+
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/vozilo")
+                        .with(user("admin")
+                                .password("root")
+                                .roles("ROLES_ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1L"));
+
     }
 
-    @Test
-    void getVoziloByCode() {
-    }
+
 
     @Test
-    void getVoziloByRegistration() {
+    void save() throws Exception {
+        Vozilo vozilo1 = new Vozilo();
+        vozilo1.setId(1L);
+
+
+        mvc.perform(post("/vozilo").with(user("admin").password("root").roles("ROLES_ADMIN"))
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(vozilo1))
+                .accept(MediaType.APPLICATION_JSON))
+
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(1L));
     }
 
-    @Test
-    void getVoziloByVin() {
-    }
-
-    @Test
-    void save() {
-    }
-
-    @Test
-    void update() {
-    }
-
-    @Test
-    void delete() {
-    }
 }
