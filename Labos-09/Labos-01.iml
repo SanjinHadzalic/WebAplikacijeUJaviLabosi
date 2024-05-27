@@ -64,7 +64,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:6.1.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:6.1.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:6.1.4" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:3.2.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:3.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:3.2.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:3.2.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.jayway.jsonpath:json-path:2.9.0" level="project" />
@@ -128,8 +128,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:3.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:6.1.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:6.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:6.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:6.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:6.2.2" level="project" />
     <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt-api:0.12.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.jsonwebtoken:jjwt-impl:0.12.5" level="project" />
@@ -137,5 +135,8 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.15.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.15.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.15.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:6.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:6.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:6.2.2" level="project" />
   </component>
 </module>
