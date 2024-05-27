@@ -77,9 +77,6 @@ class AuthControllerTest {
 //                .andExpect(jsonPath("$.refreshToken").value("refreshToken"));
     }
 
-    @Test
-    void refreshToken() {
-    }
 
     @Test
     void logout_success() throws Exception {
@@ -87,11 +84,5 @@ class AuthControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    void registerUser() {
-    }
 
-    @Test
-    void getAll() {
-    }
 }

@@ -44,12 +44,12 @@ class VoziloControllerTest {
 
     @Test
     void shouldReturnAll() throws Exception {
-        Vozilo vozilo1 = new Vozilo();
-        vozilo1.setId(1L);
-        Vozilo vozilo2 = new Vozilo();
-        vozilo2.setId(2L);
-
-        Mockito.when(voziloService.fetchAll()).thenReturn(Arrays.asList(vozilo1, vozilo2));
+//        Vozilo vozilo1 = new Vozilo();
+//        vozilo1.setId(1L);
+//        Vozilo vozilo2 = new Vozilo();
+//        vozilo2.setId(2L);
+//
+//        Mockito.when(voziloService.fetchAll()).thenReturn(Arrays.asList(vozilo1, vozilo2));
 
         mvc.perform(MockMvcRequestBuilders
                         .get("/vozilo")

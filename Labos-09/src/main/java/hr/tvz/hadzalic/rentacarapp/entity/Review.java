@@ -2,10 +2,14 @@ package hr.tvz.hadzalic.rentacarapp.entity;
 
 import hr.tvz.hadzalic.rentacarapp.security.UserInfo;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 //@Table(name = "review")
 public class Review {
     @Id
