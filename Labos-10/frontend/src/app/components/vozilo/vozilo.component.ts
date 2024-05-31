@@ -7,11 +7,12 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } 
 import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { JwtDecoderService } from '../../services/jwt-decoder.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-vozilo',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent,TranslateModule],
   templateUrl: './vozilo.component.html',
   styleUrl: './vozilo.component.css',
   providers: [VoziloService]

@@ -1,16 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { VoziloComponent } from './components/vozilo/vozilo.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive, VoziloComponent],
+  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive, VoziloComponent, TranslateModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'angular-i18n';
+  selectedLanguage = 'hr';
+
+  constructor(private translateService: TranslateService){}
+
+  onLanguageChange() {
+    this.translateService.use(this.selectedLanguage)
+  }
 }

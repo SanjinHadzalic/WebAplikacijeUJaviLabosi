@@ -1,16 +1,16 @@
 <app-navbar></app-navbar>
-<h1>Popis vozila</h1>
+<h1>{{'voziloList.title' | translate}}</h1>
 <ul class="list-group">
 
-  <input type="text" placeholder="Filter by registration" #filter>
-  <button type="button" (click)="filterVozilo(filter.value)">Search</button>
+  <input type="text" placeholder="{{'voziloList.filter' | translate}}" #filter>
+  <button type="button" (click)="filterVozilo(filter.value)">{{'voziloList.search' | translate}}</button>
 
   <tr *ngFor="let vozilo of filteredVoziloList" class="list-group-item list-group-item-action">
     <td class="list-group-item text-light bg-primary"> {{ vozilo.registration }}</td>
     <td class="list-group-item"> {{ vozilo.vin }}</td>
     <td>
-      <button (click) = "onVoziloClick(vozilo.id)" >Details</button>
-      <button (click) = "deleteVozilo(vozilo.id)">Delete</button>
+      <button (click) = "onVoziloClick(vozilo.id)">{{ 'voziloList.details' | translate}}</button>
+      <button (click) = "deleteVozilo(vozilo.id)">{{ 'voziloList.delete' | translate }}</button>
   </td>
   </tr>
 </ul>
@@ -18,128 +18,128 @@
 <div>
   <form  [formGroup]="voziloForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="registration">Registration: </label>
+      <label for="registration">{{ 'voziloList.registration' | translate }}</label>
       <input type="text" id="registration" name="registration" formControlName="registration">
     </div>
 
     <div *ngIf="voziloForm.controls.registration.invalid && (voziloForm.controls.registration.dirty || voziloForm.controls.registration.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.registration.errors?.['required']">
-        Registration is required.
+        {{ 'voziloList.registrationReq' | translate}}
       </div>
-      <div *ngIf="voziloForm.controls.registration.errors?.['pattern']">Registration must be in format XXXXX - YYY.</div>
+      <div *ngIf="voziloForm.controls.registration.errors?.['pattern']">{{ 'voziloList.registrationReqFormat' | translate}}</div>
     </div>
 
     <div class="form-group">
-      <label for="vin">Vehicle Identification Number: </label>
+      <label for="vin">{{ 'voziloList.vin' | translate}}</label>
       <input type="text" id="vin" name="vin" formControlName="vin">
     </div>
     
     <div *ngIf="voziloForm.controls.vin.invalid && (voziloForm.controls.vin.dirty || voziloForm.controls.vin.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.vin.errors?.['required']">
-        Vehicle Identification Number is required.
+        {{ 'voziloList.vinReq' | translate}}
       </div>
-      <div *ngIf="voziloForm.controls.vin.errors?.['pattern']">Vehicle Identification Number must contain only numbers (0-9) or characters (a-z or A-Z).</div>
+      <div *ngIf="voziloForm.controls.vin.errors?.['pattern']">{{ 'voziloList.vinReqFormat' | translate}}</div>
     </div>
 
     <div class="form-group">
-      <label for="maxNumberOfPassenger">Max number of Passengers: </label>
+      <label for="maxNumberOfPassenger">{{ 'voziloList.maxNumOfPass' | translate}}</label>
       <input type="number" id="maxNumberOfPassenger" name="maxNumberOfPassenger" formControlName="maxNumberOfPassenger">
     </div>
 
     <div *ngIf="voziloForm.controls.maxNumberOfPassenger.invalid && (voziloForm.controls.maxNumberOfPassenger.dirty || voziloForm.controls.maxNumberOfPassenger.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.maxNumberOfPassenger.errors?.['required']">
-        Max number of Passengers is required.
+        {{ 'voziloList.maxNumOfPassReq' | translate}}
       </div>
       <div *ngIf="voziloForm.controls.maxNumberOfPassenger.errors?.['max']">
-        Max number of Passengers must not exceed number 6.
+        {{ 'voziloList.maxNumOfPassReqNum' | translate}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="shifter">Shifter: </label>
+      <label for="shifter">{{ 'voziloList.shifter' | translate}}</label>
       <input type="text" id="shifter" name="shifter" formControlName="shifter">
     </div>
 
     <div *ngIf="voziloForm.controls.shifter.invalid && (voziloForm.controls.shifter.dirty || voziloForm.controls.shifter.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.shifter.errors?.['required']">
-       Shifter is required.
+        {{ 'voziloList.shifterReq' | translate}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="airConditioning">A/C: </label>
+      <label for="airConditioning">{{ 'voziloList.ac' | translate}}</label>
       <input type="text" id="airConditioning" name="airConditioning" formControlName="airConditioning">
     </div>
 
     <div *ngIf="voziloForm.controls.airConditioning.invalid && (voziloForm.controls.airConditioning.dirty || voziloForm.controls.airConditioning.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.airConditioning.errors?.['required']">
-        A/C is required.
+        {{ 'voziloList.acReq' | translate}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="numberOfDoors">Number of Doors: </label>
+      <label for="numberOfDoors">{{ 'voziloList.doorsNum' | translate}}</label>
       <input type="text" id="numberOfDoors" name="numberOfDoors" formControlName="numberOfDoors">
     </div>
     
     <div *ngIf="voziloForm.controls.numberOfDoors.invalid && (voziloForm.controls.numberOfDoors.dirty || voziloForm.controls.numberOfDoors.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.numberOfDoors.errors?.['required']">
-        Number of Doors is required.
+        {{ 'voziloList.doorsNumReq' | translate}}
       </div>
       <div *ngIf="voziloForm.controls.numberOfDoors.errors?.['max']">
-        Number of Doors must not exceed number 5.
+        {{ 'voziloList.doorsNumReqNum' | translate}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="fuelType">Fuel type: </label>
+      <label for="fuelType">{{ 'voziloList.fuelType' | translate}} </label>
       <input type="text" id="fuelType" name="fuelType" formControlName="fuelType">
     </div>
     
     <div *ngIf="voziloForm.controls.fuelType.invalid && (voziloForm.controls.fuelType.dirty || voziloForm.controls.fuelType.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.fuelType.errors?.['required']">
-        Fuel type is required.
+        {{ 'voziloList.fuelTypeReq' | translate}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="lastServiceDate">Last service Date: </label>
+      <label for="lastServiceDate">{{ 'voziloList.lastServiceDate' | translate}} </label>
       <input type="date" id="lastServiceDate" name="lastServiceDate" formControlName="lastServiceDate">
     </div>
     
     <div *ngIf="voziloForm.controls.lastServiceDate.invalid && (voziloForm.controls.lastServiceDate.dirty || voziloForm.controls.lastServiceDate.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.lastServiceDate.errors?.['required']">
-        Last service date is required.
+        {{ 'voziloList.lastServiceDateReq' | translate}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="nextServiceDate">Next service Date: </label>
+      <label for="nextServiceDate">{{ 'voziloList.nextServiceDate' | translate}} </label>
       <input type="date" id="nextServiceDate" name="nextServiceDate" formControlName="nextServiceDate">
     </div>
     
     <div *ngIf="voziloForm.controls.nextServiceDate.invalid && (voziloForm.controls.nextServiceDate.dirty || voziloForm.controls.nextServiceDate.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.nextServiceDate.errors?.['required']">
-        Next service date is required.
+        {{ 'voziloList.nextServiceDateReq' | translate}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="mileage">Mileage: </label>
+      <label for="mileage"> {{ 'voziloList.mileage' | translate}} </label>
       <input type="number" id="mileage" name="mileage" formControlName="mileage">
     </div>
 
     <div *ngIf="voziloForm.controls.mileage.invalid && (voziloForm.controls.mileage.dirty || voziloForm.controls.mileage.touched)" class="displayError">
       <div *ngIf="voziloForm.controls.mileage.errors?.['required']">
-        Mileage is required.
+        {{ 'voziloList.mileageReq' | translate}}
       </div>
       <div *ngIf="voziloForm.controls.mileage.errors?.['min']">
-        Mileage must be a positive number or zero.
+        {{ 'voziloList.mileageReqNum' | translate}}
       </div>
     </div>
 
-    <button type="submit" [disabled]="!voziloForm.valid">Submit</button>
+    <button type="submit" [disabled]="!voziloForm.valid">{{ 'voziloList.submit' | translate}}</button>
   </form>
 </div>
 
-<button (click)="returnToHome()">Natrag</button>
+<button (click)="returnToHome()">{{ 'voziloList.return' | translate}}</button>

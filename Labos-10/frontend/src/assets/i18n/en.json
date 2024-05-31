@@ -1,0 +1,48 @@
+{
+    "navbar": {
+        "title": "Vehicle Application",
+        "croatian": "Croatian",
+        "english": "English",
+        "logout": "Logout"       
+    },
+
+    "home": {
+        "vozilo": "Vehicle List",
+        "review": "Review List"
+    },
+
+    "voziloList": {
+        "title": "Vehicle List",
+        "filter": "Filter by registration",
+        "search": "Search",
+        "details": "Details",
+        "delete": "Delete",
+        "registration": "Registration: ",
+        "registrationReq": "Registration is required!",
+        "registrationReqFormat": "Registration must be in format XXXXX - YYY.",
+        "vin": "Vehicle Identification Number: ",
+        "vinReq": "Vehicle Identification Number is required!",
+        "vinReqFormat": "Vehicle Identification Number must contain only numbers (0-9) or characters (a-z or A-Z).",
+        "maxNumOfPass": "Max number of Passengers: ",
+        "maxNumOfPassReq": "Max number of Passengers is required!",
+        "maxNumOfPassReqNum": "Max number of Passengers must not exceed number 6.",
+        "shifter": "Shifter: ",
+        "shifterReq": "Shifter is required.",
+        "ac": "Air conditioning: ",
+        "acReq": "A/C is required!",
+        "doorsNum": "Number of Doors: ",
+        "doorsNumReq": "Number of Doors is required!",
+        "doorsNumReqNum": "Number of Doors must not exceed number 5.",
+        "fuelType": "Fuel type:",
+        "fuelTypeReq": "Fuel type is required.",
+        "lastServiceDate": "Last service Date:",
+        "lastServiceDateReq": "Last service date is required.",
+        "nextServiceDate": "Next service Date:",
+        "nextServiceDateReq": "Next service date is required!",
+        "mileage": "Mileage:",
+        "mileageReq": "Mileage is required!",
+        "mileageReqNum": "Mileage must be a positive number or zero.",
+        "submit": "Submit",
+        "return": "Return"
+    }
+}

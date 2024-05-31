@@ -1,0 +1,47 @@
+{
+    "navbar": {
+        "title": "Aplikacija za vozila",
+        "croatian": "hrvatski",
+        "english": "engleski",
+        "logout": "odjavi se"        
+    },
+    "home": {
+        "vozilo": "Lista vozila",
+        "review": "Lista recenzija"
+    },
+
+    "voziloList": {
+        "title": "Lista vozila",
+        "filter": "Filtriraj po registraciji",
+        "search": "Traži",
+        "details": "Detalji",
+        "delete": "Obriši",
+        "registration": "Registracija: ",
+        "registrationReq": "Potrebno je unijeti registraciju!",
+        "registrationReqFormat": "Registracija mora biti u formatu XXXXX - YYY.",
+        "vin": "Broj šasije: ",
+        "vinReq": "Potrebno je unijeti broj šasije!",
+        "vinReqFormat": "Broj šasije mora sadržavati brojeve (0-9) ili slova (a-z ili A-Z).",
+        "maxNumOfPass": "Maskimalni broj putnika: ",
+        "maxNumOfPassReq": "Potrebno je unijeti maksimalni broj putnika!",
+        "maxNumOfPassReqNum": "Maksimalni broj putnika ne može biti iznad broja 6.",
+        "shifter": "Mjenjač: ",
+        "shifterReq": "Potrebno je unijeti mjenjač!",
+        "ac": "Klimatizacija: ",
+        "acReq": "Potrebno je unijeti klimatizaciju!",
+        "doorsNum": "Broj vratiju: ",
+        "doorsNumReq": "Potrebno je unijeti broj vratiju!",
+        "doorsNumReqNum": "Broj vratiju ne može biti iznad broja 5.",
+        "fuelType": "Tip goriva:",
+        "fuelTypeReq": "Potrebno je unijeti tip goriva!",
+        "lastServiceDate": "Zadnji datum registracije:",
+        "lastServiceDateReq": "Potrebno je unijeti zadnji datum registracije!",
+        "nextServiceDate": "Sljedeći datum registracije:",
+        "nextServiceDateReq": "Potrebno je unijeti sljedeći datum registracije!",
+        "mileage": "Miljaža:",
+        "mileageReq": "Potrebno je unijeti miljažu!",
+        "mileageReqNum": "Miljaža mora biti pozitivan broj ili nula!",
+        "submit": "Unesi",
+        "return": "Natrag"
+    }
+}
