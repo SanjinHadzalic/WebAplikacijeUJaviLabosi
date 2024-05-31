@@ -1,43 +1,43 @@
 <div>
-    <h2>Vozilo Details</h2>
+    <h2>{{'voziloDetails.title' | translate}}</h2>
     <table>
       <tr>
-        <th>Registration</th>
+        <th>{{'voziloDetails.registration' | translate}}</th>
         <td>{{ vozilo?.registration }}</td>
       </tr>
       <tr>
-        <th>Vehicle Identification Number</th>
+        <th>{{'voziloDetails.vin' | translate}}</th>
         <td>{{ vozilo?.vin }}</td>
       </tr>
       <tr>
-        <th>Max number of Passengers</th>
+        <th>{{'voziloDetails.maxNumOfPass' | translate}}</th>
         <td>{{ vozilo?.maxNumberOfPassenger }}</td>
       </tr>
       <tr>
-        <th>Shifter</th>
+        <th>{{'voziloDetails.shifter' | translate}}</th>
         <td>{{ vozilo?.shifter }}</td>
       </tr>
       <tr>
-        <th>A/C</th>
+        <th>{{'voziloDetails.ac' | translate}}</th>
         <td>{{ vozilo?.airConditioning }}</td>
       </tr>
       <tr>
-        <th>Number of Doors</th>
+        <th>{{'voziloDetails.doorsNum' | translate}}</th>
         <td>{{ vozilo?.numberOfDoors }}</td>
       </tr>
       <tr>
-        <th>Fuel type</th>
+        <th>{{'voziloDetails.fuelType' | translate}}</th>
         <td>{{ vozilo?.fuelType }}</td>
       </tr>
       <tr>
-        <th>Reviews</th>
+        <th>{{'voziloDetails.reviewsHeader' | translate}}</th>
         <td>
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Text</th>
-                <th>Grade</th>
+                <th>{{'voziloDetails.reviewsTitle' | translate}}</th>
+                <th>{{'voziloDetails.reviewsText' | translate}}</th>
+                <th>{{'voziloDetails.reviewsGrade' | translate}}</th>
               </tr>
             </thead>
             <tbody>
@@ -52,6 +52,6 @@
       </tr>
     </table>
   
-    <button (click)="return()">Return</button>
+    <button (click)="return()">{{'voziloDetails.return' | translate}}</button>
   </div>
   

@@ -44,5 +44,20 @@
         "mileageReqNum": "Mileage must be a positive number or zero.",
         "submit": "Submit",
         "return": "Return"
+    },
+    "voziloDetails": {
+        "title": "Vozilo Details",
+        "registration": "Registration: ",
+        "vin": "Vehicle Identification Number: ",
+        "maxNumOfPass": "Max number of Passengers: ",
+        "shifter": "Shifter: ",
+        "ac": "Air conditioning: ",
+        "doorsNum": "Number of Doors: ",
+        "fuelType": "Fuel type:",
+        "reviewsHeader": "Reviews",
+        "reviewsTitle": "Title:",
+        "reviewsText": "Text:",
+        "reviewsGrade": "Grade:",
+        "return": "Return"
     }
 }

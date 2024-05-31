@@ -43,5 +43,20 @@
         "mileageReqNum": "Miljaža mora biti pozitivan broj ili nula!",
         "submit": "Unesi",
         "return": "Natrag"
+    },
+    "voziloDetails": {
+        "title": "Detalji o vozilu",
+        "registration": "Registracija: ",
+        "vin": "Broj šasije: ",
+        "maxNumOfPass": "Maskimalni broj putnika: ",
+        "shifter": "Mjenjač: ",
+        "ac": "Klimatizacija: ",
+        "doorsNum": "Broj vratiju: ",
+        "fuelType": "Tip goriva:",
+        "reviewsHeader": "Recenzije",
+        "reviewsTitle": "Naslov:",
+        "reviewsText": "Tekst:",
+        "reviewsGrade": "Ocjena:",
+        "return": "Povratak"
     }
 }

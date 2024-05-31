@@ -4,10 +4,11 @@ import { Vozilo } from '../../interfaces/vozilo';
 import { Review } from '../../interfaces/review';
 import { VoziloService } from '../../services/vozilo.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-vozilo-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './vozilo-details.component.html',
   styleUrl: './vozilo-details.component.css'
 })
