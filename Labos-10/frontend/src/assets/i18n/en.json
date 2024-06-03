@@ -59,5 +59,31 @@
         "reviewsText": "Text:",
         "reviewsGrade": "Grade:",
         "return": "Return"
+    },
+    "reviewList": {
+        "header": "Review List",
+        "details": "Details",
+        "delete":"Delete",
+        "titleReq": "Title is required!",
+        "titleReqFormat": "Title must be in format!",
+        "title": "Title: ",
+        "text": "Text: ",
+        "textReq": "Text is required!",
+        "textReqFormat": "Text must be in format!",
+        "grade": "Grade: ",
+        "gradeReq": "Grade is required.",
+        "gradeReqFormat": "Grade must be in format!",
+        "selectVehicle": "Select Vozilo registration",
+        "submit": "Submit",
+        "return": "Return"
+    },
+    "reviewDetails": {
+        "header": "Update Review",
+        "title": "Title:",
+        "text": "Text: ",
+        "grade": "Grade: ",
+        "selectVehicle": "Select Vozilo registration",
+        "save": "Save",
+        "return": "Return"
     }
 }

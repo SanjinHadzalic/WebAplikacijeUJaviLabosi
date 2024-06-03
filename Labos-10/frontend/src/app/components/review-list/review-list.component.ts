@@ -9,10 +9,11 @@ import { VoziloService } from '../../services/vozilo.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AuthService } from '../../services/auth.service';
 import { UserInfo } from '../../interfaces/user';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-review-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent, TranslateModule],
   templateUrl: './review-list.component.html',
   styleUrl: './review-list.component.css',
   providers: [ReviewService, VoziloService]

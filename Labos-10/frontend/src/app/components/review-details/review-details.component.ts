@@ -4,16 +4,15 @@ import { FormBuilder, FormGroup, FormsModule, NumberValueAccessor, ReactiveForms
 import { Review } from '../../interfaces/review';
 import { ReviewService } from '../../services/review.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 import { Vozilo } from '../../interfaces/vozilo';
-import { VoziloComponent } from '../vozilo/vozilo.component';
 import { VoziloService } from '../../services/vozilo.service';
 import { JwtDecoderService } from '../../services/jwt-decoder.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-review-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './review-details.component.html',
   styleUrl: './review-details.component.css',
   providers: [ReviewService, VoziloService]

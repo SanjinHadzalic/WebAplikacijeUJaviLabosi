@@ -1,20 +1,20 @@
 <div>
-    <h2>Update Review</h2>
+    <h2>{{"reviewDetails.header" | translate}}</h2>
     <form [formGroup]="reviewForm" (ngSubmit)="updateReview()">
       <div>
-        <label>Title</label>
+        <label>{{"reviewDetails.title" | translate}}</label>
         <input type="text" formControlName="title">
       </div>
       <div>
-        <label>Text</label>
+        <label>{{"reviewDetails.text" | translate}}</label>
         <textarea formControlName="text"></textarea>
       </div>
       <div>
-        <label>Grade</label>
+        <label>{{"reviewDetails.grade" | translate}}</label>
         <input type="number" formControlName="grade">
       </div>
       <div>
-          <p>Select Vozilo registration</p>
+          <p>{{"reviewDetails.selectVehicle" | translate}}</p>
           <select [(ngModel)]="selectedVoziloId" name="vozilo" formControlName="vozilo">
             <option *ngFor="let vo of vozila" [value]="vo.id">
                 {{vo.registration}}
@@ -22,8 +22,8 @@
           </select>
       </div>
 
-      <button type="submit">Save</button>
-      <button type="button" (click)="return()">Return</button>
+      <button type="submit">{{"reviewDetails.save" | translate}}</button>
+      <button type="button" (click)="return()">{{"reviewDetails.return" | translate}}</button>
     </form>
   </div>
   

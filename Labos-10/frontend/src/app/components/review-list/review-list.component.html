@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<h1>Lista recenzija</h1>
+<h1>{{ "reviewList.header" | translate}}</h1>
 <ul class="list-group">
 
   
@@ -10,8 +10,8 @@
       <td class="list-group-item"> {{ review.vozilo.registration}}</td>
       <td class="list-group-item"> {{ review.user.username}}</td>
       <td>
-        <button (click) = "onReviewClick(review.id)" >Details</button>
-        <button (click) = "deleteReview(review.id)">Delete</button>
+        <button (click) = "onReviewClick(review.id)" >{{ "reviewList.details" | translate}}</button>
+        <button (click) = "deleteReview(review.id)">{{ "reviewList.delete" | translate}}</button>
     </td>
     </tr>
   </ul>
@@ -19,44 +19,48 @@
   <div>
     <form  [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="title">Title: </label>
+        <label for="title">{{ "reviewList.title" | translate}}</label>
         <input type="text" id="title" name="title" formControlName="title">
       </div>
   
       <div *ngIf="reviewForm.controls.title.invalid && (reviewForm.controls.title.dirty || reviewForm.controls.title.touched)" class="displayError">
         <div *ngIf="reviewForm.controls.title.errors?.['required']">
-          Title is required.
+          {{ "reviewList.titleReq" | translate}}
         </div>
-        <div *ngIf="reviewForm.controls.title.errors?.['pattern']">title must be in format.</div>
+        <div *ngIf="reviewForm.controls.title.errors?.['pattern']">
+          {{ "reviewList.titleReqFormat" | translate}}
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="text">Text: </label>
+        <label for="text">{{ "reviewList.text" | translate}}</label>
         <input type="text" id="text" name="text" formControlName="text">
       </div>
 
 
       <div *ngIf="reviewForm.controls.text.invalid && (reviewForm.controls.text.dirty || reviewForm.controls.text.touched)" class="displayError">
         <div *ngIf="reviewForm.controls.text.errors?.['required']">
-            text is required.
+          {{ "reviewList.textReq" | translate}}
         </div>
-        <div *ngIf="reviewForm.controls.text.errors?.['pattern']">text must be in format.</div>
+        <div *ngIf="reviewForm.controls.text.errors?.['pattern']">{{ "reviewList.textReqFormat" | translate}}</div>
       </div>
 
       <div class="form-group">
-        <label for="grade">Grade: </label>
+        <label for="grade">{{ "reviewList.grade" | translate}}</label>
         <input type="number" id="grade" name="grade" formControlName="grade">
       </div>
 
 
       <div *ngIf="reviewForm.controls.grade.invalid && (reviewForm.controls.grade.dirty || reviewForm.controls.grade.touched)" class="displayError">
         <div *ngIf="reviewForm.controls.grade.errors?.['required']">
-          Title is required.
+          {{ "reviewList.gradeReq" | translate}}
         </div>
-        <div *ngIf="reviewForm.controls.grade.errors?.['pattern']">grade must be in .</div>
+        <div *ngIf="reviewForm.controls.grade.errors?.['pattern']">
+          {{ "reviewList.gradeReqFormat" | translate}}
+        </div>
       </div>
   
-      <p>Select Vozilo registration</p>
+      <p>{{ "reviewList.selectVehicle" | translate}}</p>
       <select [(ngModel)]="selectedVoziloId" name="vozilo_id" formControlName="vozilo_id">
         <option *ngFor="let vo of vozila" [value]="vo.id">
             {{vo.registration}}
@@ -64,9 +68,9 @@
       </select>
       
   
-      <button type="submit" [disabled]="!reviewForm.valid">Submit</button>
+      <button type="submit" [disabled]="!reviewForm.valid">{{ "reviewList.submit" | translate}}</button>
     </form>
   </div>
   
-  <button (click)="returnToHome()">Natrag</button>
+  <button (click)="returnToHome()">{{ "reviewList.return" | translate}}</button>
   

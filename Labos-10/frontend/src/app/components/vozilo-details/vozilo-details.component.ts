@@ -30,8 +30,6 @@ export class VoziloDetailsComponent {
       this.registration = this.vozilo.registration;
       this.loadReviewsForVozilo(this.registration);
     })
-
-
   }
 
   loadReviewsForVozilo(id: string) {

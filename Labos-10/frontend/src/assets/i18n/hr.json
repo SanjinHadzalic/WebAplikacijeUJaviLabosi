@@ -58,5 +58,31 @@
         "reviewsText": "Tekst:",
         "reviewsGrade": "Ocjena:",
         "return": "Povratak"
+    },
+    "reviewList": {
+        "header": "Lista recenzija",
+        "details": "Detalji",
+        "delete":"Obriši",
+        "titleReq": "Potrebno je unijeti naslov!",
+        "titleReqFormat": "Potrebno je unijeti naslov u odgovarajućem formatu!",
+        "title": "Naslov: ",
+        "text": "Tekst: ",
+        "textReq": "Potrebno je unijeti tekst!",
+        "textReqFormat": "Potrebno je unijeti tekst u odgovarajućem formatu!",
+        "grade": "Ocjena: ",
+        "gradeReq": "Potrebno je unijeti ocjenu!",
+        "gradeReqFormat": "Potrebno je unijeti ocjenu o odgovarajućem formatu!",
+        "selectVehicle": "Odaberite registraciju vozila",
+        "submit": "Unesi",
+        "return": "Povratak"
+    },
+    "reviewDetails": {
+        "header": "Ažuriranje recenzije",
+        "title": "Naslov: ",
+        "text": "Tekst: ",
+        "grade": "Ocjena: ",
+        "selectVehicle": "Odaberite registraciju vozila",
+        "save": "Spremi",
+        "return": "Povratak"
     }
 }
