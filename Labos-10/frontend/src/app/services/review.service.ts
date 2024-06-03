@@ -7,7 +7,7 @@ import { Review } from '../interfaces/review';
 })
 export class ReviewService {
 
-  private baseUrl = "http://localhost:8080/review";
+  private baseUrl = "http://localhost:8084/review";
 
   constructor(private httpClient: HttpClient) { }
 

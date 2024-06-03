@@ -10,8 +10,8 @@ import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/htt
 })
 export class VoziloService {
 
-  private basUrl = "http://localhost:8080/vozilo"
-  private basReview = "http://localhost:8080/review"
+  private basUrl = "http://localhost:8084/vozilo"
+  private basReview = "http://localhost:8084/review"
 
   constructor(private httpClient: HttpClient) { }
 

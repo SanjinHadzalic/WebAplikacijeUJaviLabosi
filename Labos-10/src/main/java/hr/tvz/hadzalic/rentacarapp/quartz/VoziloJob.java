@@ -2,13 +2,14 @@ package hr.tvz.hadzalic.rentacarapp.quartz;
 
 import hr.tvz.hadzalic.rentacarapp.entity.Vozilo;
 import hr.tvz.hadzalic.rentacarapp.service.VoziloService;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.util.List;
-
+@DisallowConcurrentExecution
 public class VoziloJob extends QuartzJobBean {
     @Autowired
     VoziloService voziloService;

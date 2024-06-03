@@ -42,6 +42,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/vozilo/**").hasAnyRole("ROLES_USER")
                         .requestMatchers(HttpMethod.PUT, "/vozilo/**").hasAnyRole("ROLES_USER")
                         .requestMatchers( "/vozilo/**").authenticated()
+                        .requestMatchers("/poslovnica/**").authenticated()
                         .requestMatchers("/review/**").authenticated()
                         .requestMatchers("/h2-console/**").permitAll()
                 )

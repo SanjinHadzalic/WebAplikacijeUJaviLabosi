@@ -7,7 +7,7 @@ import { UserInfo } from '../interfaces/user';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/auth/api/v1';
+  private baseUrl = 'http://localhost:8084/auth/api/v1';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
